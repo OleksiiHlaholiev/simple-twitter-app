@@ -1,0 +1,32 @@
+.progress-react {
+  height: 30vmin;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .progress-react {
+    animation: progress-spin infinite 10s linear;
+  }
+}
+
+.progress-cont {
+  background-color: transparent;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+@keyframes progress-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
