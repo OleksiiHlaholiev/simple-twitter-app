@@ -8,6 +8,7 @@ import {ROUTES_PATH} from "../../constants";
 export const Layout = () => {
     const isAuth = true; // TODO the logic
     const location = useLocation();
+    const currentPath = location.pathname;
     console.log({location});
 
     return (
@@ -21,7 +22,7 @@ export const Layout = () => {
                     <List component="nav" style={{display: 'flex', marginTop: '30px'}}>
                         <ListItemButton component={NavLink}
                                         to={ROUTES_PATH.home}
-                                        selected={true}
+                                        selected={currentPath.includes(ROUTES_PATH.home)}
                         >
                             <ListItemIcon>
                                 <HomeIcon/>
@@ -31,6 +32,7 @@ export const Layout = () => {
 
                         <ListItemButton component={NavLink}
                                         to={ROUTES_PATH.settings}
+                                        selected={currentPath.includes(ROUTES_PATH.settings)}
                         >
                             <ListItemIcon>
                                 <SettingsApplicationsIcon/>
