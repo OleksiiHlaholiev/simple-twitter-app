@@ -1,11 +1,28 @@
 import React, {useState} from "react";
 import { TextField, Button } from "@mui/material";
+import { makeAuthLoginRequest } from "../../services/api";
+import ProgressBar from "../ProgressBar";
+import {showNotificationError} from "../../helpers/notifications";
+
 
 export const LoginPage = () => {
-    const [nickName, setNickName] = useState("")
-    const [nickNameError, setNickNameError] = useState(false)
+    const [nickName, setNickName] = useState("");
+    const [nickNameError, setNickNameError] = useState(false);
+    const [isProcess, setIsProcess] = useState(false);
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const launchLoginProcess = async () => {
+        try {
+            const data = await makeAuthLoginRequest(nickName);
+            console.log('Success: ', data);
+        } catch (error: any) {
+            console.error(error);
+            const errorMsg = error?.message as string;
+            showNotificationError(errorMsg);
+            //setData(null);
+        }
+    };
+
+    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         setNickNameError(false);
@@ -16,12 +33,23 @@ export const LoginPage = () => {
 
         if (nickName) {
             console.log(nickName);
+            (async () => {
+                if (!isProcess) {
+                    setIsProcess(true);
+
+                    await launchLoginProcess();
+
+                    setIsProcess(false);
+                }
+            })();
         }
-    }
+    };
 
     return (
         <>
-            <form autoComplete="off" noValidate={true} onSubmit={handleSubmit}>
+            {isProcess ? (<ProgressBar/>) : ''}
+
+            <form autoComplete="off" noValidate={true} onSubmit={handleFormSubmit}>
                 <h2>Login Page</h2>
                 <TextField
                     label="Nick name"

@@ -21,8 +21,9 @@ export const makeAuthLoginRequest = (username: string) => {
         body: JSON.stringify({
             /*username,*/
             /*request with fake existing user params on the server*/
-            username: 'kminchelle',
-            password: '0lelplR',
+            username: 'atuny0',
+            password: '9uQFF1Lh',
+
         }),
     });
 };
