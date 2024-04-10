@@ -4,3 +4,5 @@ export const ROUTES_PATH = {
     detail: 'detail',
     settings: 'settings',
 };
+
+export const URL_API_BASE = 'https://dummyjson.com';
