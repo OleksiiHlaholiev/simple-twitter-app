@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { TextField, Button } from "@mui/material";
 import { makeAuthLoginRequest } from "../../services/api";
 import ProgressBar from "../ProgressBar";
-import {showNotificationError} from "../../helpers/notifications";
+import {showNotificationError, showNotificationSuccess} from "../../helpers/notifications";
 
 
 export const LoginPage = () => {
@@ -14,6 +14,7 @@ export const LoginPage = () => {
         try {
             const data = await makeAuthLoginRequest(nickName);
             console.log('Success: ', data);
+            showNotificationSuccess('Login is successful');
         } catch (error: any) {
             console.error(error);
             const errorMsg = error?.message as string;
@@ -22,16 +23,15 @@ export const LoginPage = () => {
         }
     };
 
+    const validateName = (name: string) => {
+        return name !== ''; // simple validation
+    };
+
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        setNickNameError(false);
-
-        if (nickName === '') {
-            setNickNameError(true);
-        }
-
-        if (nickName) {
+        if (validateName(nickName)) {
+            setNickNameError(false);
             console.log(nickName);
             (async () => {
                 if (!isProcess) {
@@ -42,6 +42,8 @@ export const LoginPage = () => {
                     setIsProcess(false);
                 }
             })();
+        } else {
+            setNickNameError(true);
         }
     };
 

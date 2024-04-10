@@ -17,7 +17,7 @@ export const makeAuthLoginRequest = (username: string) => {
     return asyncRequest(requestURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: "include",
+        /*credentials: "include",*/
         body: JSON.stringify({
             /*username,*/
             /*request with fake existing user params on the server*/
