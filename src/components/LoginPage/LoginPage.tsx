@@ -10,7 +10,7 @@ export const LoginPage = () => {
 
         setNickNameError(false);
 
-        if (nickName == '') {
+        if (nickName === '') {
             setNickNameError(true);
         }
 
@@ -22,7 +22,7 @@ export const LoginPage = () => {
     return (
         <>
             <form autoComplete="off" noValidate={true} onSubmit={handleSubmit}>
-                <h2>Login Form</h2>
+                <h2>Login Page</h2>
                 <TextField
                     label="Nick name"
                     onChange={e => setNickName(e.target.value)}
@@ -40,4 +40,4 @@ export const LoginPage = () => {
             </form>
         </>
     );
-}
+};
