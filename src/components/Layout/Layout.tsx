@@ -5,6 +5,10 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import {NavLink, Outlet, useLocation} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export const Layout = () => {
     const isAuth = true; // TODO the logic
     const location = useLocation();
@@ -15,6 +19,8 @@ export const Layout = () => {
         <>
             <Container maxWidth="sm" className="App">
                 <h1>Layout Page</h1>
+
+                <ToastContainer />
 
                 <Outlet />
 
