@@ -1,7 +1,7 @@
 import React from "react";
 import {Container, List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
-import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import SettingsIcon from '@mui/icons-material/Settings';
 import {NavLink, Outlet, useLocation} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 
@@ -41,7 +41,7 @@ export const Layout = () => {
                                         selected={currentPath.includes(ROUTES_PATH.settings)}
                         >
                             <ListItemIcon>
-                                <SettingsApplicationsIcon/>
+                                <SettingsIcon/>
                             </ListItemIcon>
                             <ListItemText primary={'Settings'}/>
                         </ListItemButton>

@@ -11,8 +11,14 @@
 }
 
 .progress-cont {
-  background-color: transparent;
-  min-height: 50vh;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background-color: rgba(250, 250, 250, 0.85);
+  height: 100%;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
