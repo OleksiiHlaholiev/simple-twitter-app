@@ -16,7 +16,7 @@ const App = () => {
                     <Route index element={<Navigate to={ROUTES_PATH.login} replace />} />
                     <Route path={ROUTES_PATH.login} element={<LoginPage />} />
                     <Route path={ROUTES_PATH.home} element={<HomePage />} />
-                    <Route path={ROUTES_PATH.detail} element={<DetailPage />} />
+                    <Route path={`${ROUTES_PATH.detail}/:id`} element={<DetailPage />} />
                     <Route path={ROUTES_PATH.settings} element={<SettingsPage />} />
                     <Route path="*" element={<Navigate to={ROUTES_PATH.login} replace />} />
                 </Route>

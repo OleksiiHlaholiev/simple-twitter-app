@@ -16,38 +16,40 @@ export const Layout = () => {
     console.log({location});
 
     return (
-        <>
-            <Container maxWidth="sm" className="App">
-                <h1>Layout Page</h1>
+        <section className="app">
+            <div className="bg-cont">
+                <div className="container">
+                    <h1>Simple Twitter App!</h1>
 
-                <ToastContainer />
+                    <ToastContainer />
 
-                <Outlet />
+                    <Outlet />
 
-                {isAuth && (
-                    <List component="nav" style={{display: 'flex', marginTop: '30px'}}>
-                        <ListItemButton component={NavLink}
-                                        to={ROUTES_PATH.home}
-                                        selected={currentPath.includes(ROUTES_PATH.home)}
-                        >
-                            <ListItemIcon>
-                                <HomeIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={'Home'}/>
-                        </ListItemButton>
+                    {isAuth && (
+                        <List component="nav" style={{display: 'flex', marginTop: '30px'}}>
+                            <ListItemButton component={NavLink}
+                                            to={ROUTES_PATH.home}
+                                            selected={currentPath.includes(ROUTES_PATH.home)}
+                            >
+                                <ListItemIcon>
+                                    <HomeIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary={'Home'}/>
+                            </ListItemButton>
 
-                        <ListItemButton component={NavLink}
-                                        to={ROUTES_PATH.settings}
-                                        selected={currentPath.includes(ROUTES_PATH.settings)}
-                        >
-                            <ListItemIcon>
-                                <SettingsIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={'Settings'}/>
-                        </ListItemButton>
-                    </List>
-                )}
-            </Container>
-        </>
+                            <ListItemButton component={NavLink}
+                                            to={ROUTES_PATH.settings}
+                                            selected={currentPath.includes(ROUTES_PATH.settings)}
+                            >
+                                <ListItemIcon>
+                                    <SettingsIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary={'Settings'}/>
+                            </ListItemButton>
+                        </List>
+                    )}
+                </div>
+            </div>
+        </section>
     )
 };
