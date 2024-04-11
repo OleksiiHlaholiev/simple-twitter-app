@@ -13,7 +13,7 @@ export const DetailPage = () => {
     const [data, setData] = useState<IPost | null>(null);
     const [isProcess, setIsProcess] = useState<boolean>(false);
 
-    const renderAndRequestCondition = !isProcess && data;
+    const renderCondition = !isProcess && data;
 
     const loadData = async () => {
         try {
@@ -80,7 +80,7 @@ export const DetailPage = () => {
 
     const renderContent = () => {
         // TODO: check the render logic
-        return renderAndRequestCondition ? (renderSinglePost(data)) : '';
+        return renderCondition ? (renderSinglePost(data)) : '';
     };
 
     return (

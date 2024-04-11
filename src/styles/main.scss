@@ -3,6 +3,8 @@
 @import "details";
 
 .form-cont {
+    width: 400px;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -85,6 +87,46 @@
                 }
             }
         }
+    }
+}
+
+.settings-page {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+
+    .fields-wrapper {
+        margin-bottom: 30px;
+
+        .field-cont {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+
+            border: 1px solid #e3e3e3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            .field {
+                margin: 20px;
+                font-size: 18px;
+                width: 50%;
+                //border: 2px solid #000;
+                color: #000;
+
+                &.field-name {
+                    font-weight: bold;
+                    text-align: right;
+                }
+
+                &.field-value {
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .btn-cont {
+        text-align: center;
     }
 }
 

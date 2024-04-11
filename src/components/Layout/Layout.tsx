@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Layout = () => {
-    const isAuth = true; // TODO the logic
+    const isAuth = localStorage.getItem('isAuth'); //TODO the logic
     const location = useLocation();
     const currentPath = location.pathname;
     console.log({location});

@@ -12,7 +12,7 @@ export const HomePage = () => {
     const [data, setData] = useState<IPost[]>([]);
     const [isProcess, setIsProcess] = useState<boolean>(false);
 
-    const renderAndRequestCondition = !isProcess;
+    const renderCondition = !isProcess;
 
     const loadData = async () => {
         try {
@@ -29,7 +29,7 @@ export const HomePage = () => {
 
     useEffect(() => {
         (async () => {
-            if (renderAndRequestCondition) {
+            if (!isProcess) {
                 setIsProcess(true);
 
                 await loadData();
@@ -84,7 +84,7 @@ export const HomePage = () => {
 
     const renderContent = () => {
         // TODO: check the render logic
-        return renderAndRequestCondition ? (renderPosts(data)) : '';
+        return renderCondition ? (renderPosts(data)) : '';
     };
 
     return (

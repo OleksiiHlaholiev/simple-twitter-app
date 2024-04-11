@@ -20,6 +20,7 @@ export const LoginPage = () => {
             showNotificationSuccess('Login is successful');
             //TODO: check the redirect to Home page and logic
             localStorage.setItem('token', data.token);
+            localStorage.setItem('isAuth', 'true');
             navigate(`/${ROUTES_PATH.home}`);
         } catch (error: any) {
             console.error(error);
