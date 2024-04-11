@@ -3,18 +3,23 @@ import { TextField, Button } from "@mui/material";
 import { makeAuthLoginRequest } from "../../services/api";
 import ProgressBar from "../ProgressBar";
 import {showNotificationError, showNotificationSuccess} from "../../helpers/notifications";
+import { useNavigate } from "react-router-dom";
+import { ROUTES_PATH } from "../../constants";
 
 
 export const LoginPage = () => {
     const [nickName, setNickName] = useState("");
     const [nickNameError, setNickNameError] = useState(false);
     const [isProcess, setIsProcess] = useState(false);
+    const navigate = useNavigate();
 
     const launchLoginProcess = async () => {
         try {
             const data = await makeAuthLoginRequest(nickName);
             console.log('Success: ', data);
             showNotificationSuccess('Login is successful');
+            //TODO: check the redirect to Home page and logic
+            navigate(`/${ROUTES_PATH.home}`);
         } catch (error: any) {
             console.error(error);
             const errorMsg = error?.message as string;
