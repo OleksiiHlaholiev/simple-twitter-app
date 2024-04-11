@@ -5,6 +5,7 @@ import {showNotificationError} from "../../helpers/notifications";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import {Link, useParams} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
+import {renderTags} from "../../helpers/renderFuncs";
 
 export const DetailPage = () => {
     const params = useParams();
@@ -60,6 +61,7 @@ export const DetailPage = () => {
                                         <div className="info-cont">
                                             <h3 className="name">{title}</h3>
                                             <p>ID: {id}</p>
+                                            {renderTags(tags)}
                                             <p>{`Reactions: ${reactions}`}</p>
                                             <p className="description">{body}</p>
                                             <p className="detail-info">

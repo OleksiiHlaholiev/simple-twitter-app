@@ -29,7 +29,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 
             .info-cont {
-                min-height: 25vh;
+                min-height: 30vh;
                 width: 100%;
                 padding: 15px;
                 position: relative;
@@ -65,6 +65,21 @@
                     }
                 }
 
+                .tags-list {
+                    display: inline-flex;
+                    list-style: none;
+                    margin-bottom: 5px;
+
+                    .tag-item {
+                        margin: 5px 10px 5px 0;
+                        padding: 5px 10px;
+                        color: #fff;
+                        font-size: 14px;
+                        background-color: #0c5460;
+                        border-radius: 10px;
+                    }
+                }
+
                 .go-to-main-btn {
                     color: #fff;
                 }
@@ -92,9 +107,19 @@
         a {
             margin: 5px 15px;
             padding: 10px;
+            border-radius: 10px;
+            color: #000;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
 
             &.Mui-selected {
                 background-color: rgba(25, 118, 210, 0.3);
+            }
+
+            .MuiSvgIcon-root {
+                fill: #000;
             }
         }
     }

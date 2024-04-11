@@ -5,6 +5,7 @@ import {showNotificationError} from "../../helpers/notifications";
 import {IPost} from "../../dataTypes/dataTypes";
 import ProgressBar from "../ProgressBar";
 import { Link } from "react-router-dom";
+import { renderTags } from "../../helpers/renderFuncs";
 
 export const HomePage = () => {
     const [page, setPage] = useState<number>(0);
@@ -51,6 +52,7 @@ export const HomePage = () => {
                 <div className="info-cont">
                     <Link to={linkPathTo} className="link name">{title}</Link>
                     <p>ID: {id}</p>
+                    {renderTags(tags)}
                     <p>{`Reactions: ${reactions}`}</p>
                     <p className="description">{tempDescrStr}</p>
                     <p className="detail-info">
