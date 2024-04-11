@@ -8,17 +8,18 @@ import { ROUTES_PATH } from "../../constants";
 
 
 export const LoginPage = () => {
-    const [nickName, setNickName] = useState("");
-    const [nickNameError, setNickNameError] = useState(false);
-    const [isProcess, setIsProcess] = useState(false);
+    const [nickName, setNickName] = useState<string>("");
+    const [nickNameError, setNickNameError] = useState<boolean>(false);
+    const [isProcess, setIsProcess] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const launchLoginProcess = async () => {
         try {
             const data = await makeAuthLoginRequest(nickName);
-            console.log('Success: ', data);
+            console.log('Login Success: ', data);
             showNotificationSuccess('Login is successful');
             //TODO: check the redirect to Home page and logic
+            localStorage.setItem('token', data.token);
             navigate(`/${ROUTES_PATH.home}`);
         } catch (error: any) {
             console.error(error);
