@@ -3,26 +3,7 @@
 @import "details";
 
 .form-cont {
-    .input-group-text {
-        background-color: #bcc8d1;
-    }
-
-    .btn-outline-secondary:hover {
-        color: #fff;
-        background-color: #bcc8d1;
-        border-color: #6c757d;
-    }
-
-    .btn-outline-secondary:focus, .btn-outline-secondary.focus {
-        box-shadow: none;
-    }
-
-    .icon-search {
-        img {
-            width: 20px;
-            height: 20px;
-        }
-    }
+    text-align: center;
 }
 
 .posts-wrapper {
@@ -90,3 +71,31 @@
         }
     }
 }
+
+.app-footer {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #eeefff;
+
+    display: flex;
+    justify-content: center;
+
+    .footer-nav {
+        margin: 0;
+        display: inline-flex;
+
+        a {
+            margin: 5px 15px;
+            padding: 10px;
+
+            &.Mui-selected {
+                background-color: rgba(25, 118, 210, 0.3);
+            }
+        }
+    }
+}
+

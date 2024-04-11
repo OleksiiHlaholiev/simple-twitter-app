@@ -57,7 +57,11 @@ export const LoginPage = () => {
         <>
             {isProcess ? (<ProgressBar/>) : ''}
 
-            <form autoComplete="off" noValidate={true} onSubmit={handleFormSubmit}>
+            <form autoComplete="off"
+                  className="form-cont"
+                  noValidate={true}
+                  onSubmit={handleFormSubmit}
+            >
                 <h2>Login Page</h2>
                 <TextField
                     label="Nick name"

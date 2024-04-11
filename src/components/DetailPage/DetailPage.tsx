@@ -48,26 +48,30 @@ export const DetailPage = () => {
         const linkPathTo = `/${ROUTES_PATH.home}`;
 
         return (
-            <div className="posts-wrapper">
-                <h2 className="post-title">{titleStr}</h2>
+            <div className='detail-page loaded'>
+                <div className="bg-cont">
+                    <div className="posts-wrapper">
+                        <h2 className="post-title">{titleStr}</h2>
 
-                {isDataNotEmpty ? (
-                    <>
-                        <div className="posts-cont">
-                            <div className="item" key={`post-item-${id}`}>
-                                <div className="info-cont">
-                                    <h3 className="name">{title}</h3>
-                                    <p>ID: {id}</p>
-                                    <p>{`Reactions: ${reactions}`}</p>
-                                    <p className="description">{body}</p>
-                                    <p className="detail-info">
-                                        <Link to={linkPathTo} className="link">Home</Link>
-                                    </p>
+                        {isDataNotEmpty ? (
+                            <>
+                                <div className="posts-cont">
+                                    <div className="item" key={`post-item-${id}`}>
+                                        <div className="info-cont">
+                                            <h3 className="name">{title}</h3>
+                                            <p>ID: {id}</p>
+                                            <p>{`Reactions: ${reactions}`}</p>
+                                            <p className="description">{body}</p>
+                                            <p className="detail-info">
+                                                <Link to={linkPathTo} className="link go-to-main-btn">HOME</Link>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </>
-                ) : ''}
+                            </>
+                        ) : ''}
+                    </div>
+                </div>
             </div>
         );
     };

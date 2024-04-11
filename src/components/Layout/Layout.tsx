@@ -17,16 +17,18 @@ export const Layout = () => {
 
     return (
         <section className="app">
-            <div className="bg-cont">
-                <div className="container">
-                    <h1>Simple Twitter App!</h1>
+            <div className="container">
+                <h1>Simple Twitter App!</h1>
 
-                    <ToastContainer />
+                <ToastContainer />
 
-                    <Outlet />
+                <Outlet />
 
-                    {isAuth && (
-                        <List component="nav" style={{display: 'flex', marginTop: '30px'}}>
+                {isAuth && (
+                    <footer className='app-footer'>
+                        <List component="nav"
+                              className='footer-nav'
+                        >
                             <ListItemButton component={NavLink}
                                             to={ROUTES_PATH.home}
                                             selected={currentPath.includes(ROUTES_PATH.home)}
@@ -47,8 +49,8 @@ export const Layout = () => {
                                 <ListItemText primary={'Settings'}/>
                             </ListItemButton>
                         </List>
-                    )}
-                </div>
+                    </footer>
+                )}
             </div>
         </section>
     )
