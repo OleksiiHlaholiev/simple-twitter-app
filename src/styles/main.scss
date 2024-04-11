@@ -1,0 +1,92 @@
+@import 'mixins';
+@import 'general-styles';
+@import "details";
+
+.form-cont {
+    .input-group-text {
+        background-color: #bcc8d1;
+    }
+
+    .btn-outline-secondary:hover {
+        color: #fff;
+        background-color: #bcc8d1;
+        border-color: #6c757d;
+    }
+
+    .btn-outline-secondary:focus, .btn-outline-secondary.focus {
+        box-shadow: none;
+    }
+
+    .icon-search {
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.posts-wrapper {
+    margin-top: 50px;
+
+    h2 {
+        font-family: $ProximaNovaBold;
+    }
+
+    .posts-cont {
+        margin-top: 30px;
+
+        .item.template {
+            display: none;
+        }
+        .item {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+            border: 1px solid $greyColorLight;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+            .info-cont {
+                min-height: 25vh;
+                padding: 15px;
+                position: relative;
+
+                @include mediaMaxWidth($mobileWidth) {
+                    width: 100%;
+                }
+                p {
+                    margin-bottom: 5px;
+                }
+                .name {
+                    font-size: 1.5rem;
+                    font-family: $ProximaNovaBold;
+                }
+                .description {
+                    margin-top: 15px;
+                }
+                .detail-info {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    padding: 15px;
+                    margin: 0;
+                    border-top: 1px solid $greyColorLight;
+
+                    @include mediaMaxWidth($mobileWidth) {
+                        position: relative;
+                    }
+
+                    .link {
+
+                    }
+                }
+
+                .go-to-main-btn {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
