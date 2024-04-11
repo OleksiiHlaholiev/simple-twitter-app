@@ -1,3 +1,15 @@
-import {ROUTES_PATH, URL_API_BASE} from './constants';
+import {
+    ROUTES_PATH,
+    URL_API_BASE,
+    POSTS_LIMIT,
+    INVALID_TOKEN_OR_EXPIRED,
+    DESCRIPTION_SYMBOLS_QUANTITY,
+} from './constants';
 
-export {ROUTES_PATH, URL_API_BASE};
+export {
+    ROUTES_PATH,
+    URL_API_BASE,
+    POSTS_LIMIT,
+    INVALID_TOKEN_OR_EXPIRED,
+    DESCRIPTION_SYMBOLS_QUANTITY
+};

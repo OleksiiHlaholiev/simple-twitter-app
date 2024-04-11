@@ -10,44 +10,48 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Layout = () => {
-    const isAuth = true; // TODO the logic
+    const isAuth = localStorage.getItem('isAuth'); //TODO the logic
     const location = useLocation();
     const currentPath = location.pathname;
     console.log({location});
 
     return (
-        <>
-            <Container maxWidth="sm" className="App">
-                <h1>Layout Page</h1>
+        <section className="app">
+            <div className="container">
+                <h1>Simple Twitter App!</h1>
 
                 <ToastContainer />
 
                 <Outlet />
 
                 {isAuth && (
-                    <List component="nav" style={{display: 'flex', marginTop: '30px'}}>
-                        <ListItemButton component={NavLink}
-                                        to={ROUTES_PATH.home}
-                                        selected={currentPath.includes(ROUTES_PATH.home)}
+                    <footer className='app-footer'>
+                        <List component="nav"
+                              className='footer-nav'
                         >
-                            <ListItemIcon>
-                                <HomeIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={'Home'}/>
-                        </ListItemButton>
+                            <ListItemButton component={NavLink}
+                                            to={ROUTES_PATH.home}
+                                            selected={currentPath.includes(ROUTES_PATH.home)}
+                            >
+                                <ListItemIcon>
+                                    <HomeIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary={'Home'}/>
+                            </ListItemButton>
 
-                        <ListItemButton component={NavLink}
-                                        to={ROUTES_PATH.settings}
-                                        selected={currentPath.includes(ROUTES_PATH.settings)}
-                        >
-                            <ListItemIcon>
-                                <SettingsIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={'Settings'}/>
-                        </ListItemButton>
-                    </List>
+                            <ListItemButton component={NavLink}
+                                            to={ROUTES_PATH.settings}
+                                            selected={currentPath.includes(ROUTES_PATH.settings)}
+                            >
+                                <ListItemIcon>
+                                    <SettingsIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary={'Settings'}/>
+                            </ListItemButton>
+                        </List>
+                    </footer>
                 )}
-            </Container>
-        </>
+            </div>
+        </section>
     )
 };

@@ -1,0 +1,169 @@
+@import 'mixins';
+@import 'general-styles';
+@import "details";
+
+.form-cont {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.posts-wrapper {
+    margin-top: 50px;
+
+    h2 {
+        font-family: $ProximaNovaBold;
+    }
+
+    .posts-cont {
+        margin-top: 30px;
+
+        .item.template {
+            display: none;
+        }
+        .item {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+            border: 1px solid $greyColorLight;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+            .info-cont {
+                min-height: 30vh;
+                width: 100%;
+                padding: 15px;
+                position: relative;
+
+                @include mediaMaxWidth($mobileWidth) {
+                    width: 100%;
+                }
+                p {
+                    margin-bottom: 5px;
+                }
+                .name {
+                    font-size: 1.5rem;
+                    font-family: $ProximaNovaBold;
+                }
+                .description {
+                    margin-top: 15px;
+                }
+                .detail-info {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    padding: 15px;
+                    margin: 0;
+                    border-top: 1px solid $greyColorLight;
+
+                    @include mediaMaxWidth($mobileWidth) {
+                        position: relative;
+                    }
+
+                    .link {
+
+                    }
+                }
+
+                .tags-list {
+                    display: inline-flex;
+                    list-style: none;
+                    margin-bottom: 5px;
+
+                    .tag-item {
+                        margin: 5px 10px 5px 0;
+                        padding: 5px 10px;
+                        color: #fff;
+                        font-size: 14px;
+                        background-color: #0c5460;
+                        border-radius: 10px;
+                    }
+                }
+
+                .go-to-main-btn {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.settings-page {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+
+    .fields-wrapper {
+        margin-bottom: 30px;
+
+        .field-cont {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+
+            border: 1px solid #e3e3e3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            .field {
+                margin: 20px;
+                font-size: 18px;
+                width: 50%;
+                //border: 2px solid #000;
+                color: #000;
+
+                &.field-name {
+                    font-weight: bold;
+                    text-align: right;
+                }
+
+                &.field-value {
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .btn-cont {
+        text-align: center;
+    }
+}
+
+.app-footer {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #eeefff;
+
+    display: flex;
+    justify-content: center;
+
+    .footer-nav {
+        margin: 0;
+        display: inline-flex;
+
+        a {
+            margin: 5px 15px;
+            padding: 10px;
+            border-radius: 10px;
+            color: #000;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+
+            &.Mui-selected {
+                background-color: rgba(25, 118, 210, 0.3);
+            }
+
+            .MuiSvgIcon-root {
+                fill: #000;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,49 @@
+@import 'mixins';
+@import 'constants';
+
+.detail-page {
+    padding: 0;
+    margin: 30px 0;
+    color: white;
+
+    filter: opacity(0) grayscale(100%) contrast(130%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    will-change: opacity;
+    transition: filter 1s;
+
+    &.loaded {
+        filter: opacity(100) grayscale(20%) contrast(130%);
+    }
+
+    .posts-wrapper {
+        margin-top: 0;
+        .posts-cont {
+            .item {
+                border: none;
+                box-shadow: none;
+
+                .info-cont {
+                    min-height: 40vh;
+                    .name {
+                        font-size: 2.4rem;
+                        color: white;
+                    }
+
+                    .tags-list {
+                        .tag-item {
+                            color: #000;
+                            background-color: #ffff00;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .bg-cont {
+        padding: 20px 15px;
+        background-image: radial-gradient(circle at 20% 50%, rgba(0.00%, 27.84%, 67.06%, 0.98) 0%, rgba(0.00%, 27.84%, 67.06%, 0.88) 100%);
+    }
+}

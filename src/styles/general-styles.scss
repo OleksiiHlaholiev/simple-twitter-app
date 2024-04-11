@@ -1,0 +1,33 @@
+@import 'constants';
+@import 'fonts';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+
+  font-weight: normal;
+}
+
+html, body {
+  position: relative;
+
+  width: 100%;
+  background-color: #fff;
+  overflow-x: hidden;
+  font-weight: normal;
+  font-family: $ProximaNovaRegular;
+}
+
+section {
+  padding: 30px 0;
+  h1 {
+    margin-bottom: 30px;
+    font-size: 48px;
+    text-align: center;
+    color: $blueColorLight;
+    font-family: $ProximaNovaBold;
+  }
+}
