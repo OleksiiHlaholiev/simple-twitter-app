@@ -19,6 +19,11 @@
 
     .posts-wrapper {
         margin-top: 0;
+
+        .post-title {
+            margin-left: 15px;
+        }
+
         .posts-cont {
             .item {
                 border: none;

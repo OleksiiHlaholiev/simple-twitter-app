@@ -51,7 +51,7 @@ export const DetailPage = () => {
             <div className='detail-page loaded'>
                 <div className="bg-cont">
                     <div className="posts-wrapper">
-                        <h2 className="post-title page-name">{titleStr}</h2>
+                        <h2 className="post-title">{titleStr}</h2>
 
                         {isDataNotEmpty ? (
                             <>
@@ -85,7 +85,7 @@ export const DetailPage = () => {
         <>
             {isProcess ? (<ProgressBar/>) : ''}
 
-            <h2>Detail Page</h2>
+            <h2 className="page-name">Detail Page</h2>
 
             {renderContent()}
         </>
