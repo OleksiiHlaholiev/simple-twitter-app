@@ -7,12 +7,25 @@ import ProgressBar from "../ProgressBar";
 import {Link} from "react-router-dom";
 import {renderTags} from "../../helpers/renderFuncs";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useDispatch} from "react-redux";
+import {fetchPosts} from "../../store/action-creators/post";
 
 export const HomePage = () => {
     const [page, setPage] = useState<number>(0);
     const [data, setData] = useState<IPost[]>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [isProcess, setIsProcess] = useState<boolean>(false);
+
+    //TODO: the logic with store
+    /*const {posts, isLoading, error} = useTypedSelector(state => state.post);
+    const postsDataFromRedux = useTypedSelector(state => state.post);
+    console.log('postsDataFromRedux: ', postsDataFromRedux);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchPosts());
+    }, []);*/
 
     const loadData = async () => {
         if (isProcess || !hasMore) return;

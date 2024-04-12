@@ -1,7 +1,7 @@
 import {INVALID_TOKEN_OR_EXPIRED, POSTS_LIMIT, URL_API_BASE} from "../constants";
 import {IPost, IPostResults, IUserWithToken} from "../dataTypes/dataTypes";
 
-const asyncRequest = async (url: string, options?: any) => {
+export const asyncRequest = async (url: string, options?: any) => {
     try {
         const response = await fetch(url, options);
         const data = await response.json();
