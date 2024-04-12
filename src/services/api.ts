@@ -23,7 +23,6 @@ export const makeAuthLoginRequest = (username: string): Promise<IUserWithToken> 
     return asyncRequest(requestURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        /*credentials: "include",*/
         body: JSON.stringify({
             /*username,*/
             /*request with fake existing user params on the server*/
@@ -44,16 +43,6 @@ export const getPostById = (id = 0): Promise<IPost> => {
 
     return asyncRequest(requestURL);
 };
-
-/* providing token in bearer */
-/*fetch('https://dummyjson.com/auth/me', {
-    method: 'GET',
-    headers: {
-        'Authorization': 'Bearer /!* YOUR_TOKEN_HERE *!/',
-    },
-})
-    .then(res => res.json())
-    .then(console.log);*/
 
 export const getLoggedUserInfo = () => {
     const requestURL = `${URL_API_BASE}/auth/me`;
