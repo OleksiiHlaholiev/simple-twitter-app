@@ -23,7 +23,6 @@ export const makeAuthLoginRequest = (username: string): Promise<IUserWithToken> 
     return asyncRequest(requestURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        /*credentials: "include",*/
         body: JSON.stringify({
             /*username,*/
             /*request with fake existing user params on the server*/
