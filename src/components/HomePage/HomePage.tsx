@@ -73,7 +73,7 @@ export const HomePage = () => {
 
         return (
             <div className="posts-wrapper">
-                <h2 className="post-title">{title}</h2>
+                <h3 className="post-title">{title}</h3>
 
                 <div className="posts-cont">
                     <InfiniteScroll
@@ -100,7 +100,7 @@ export const HomePage = () => {
 
     return (
         <>
-            <h2>Home Page</h2>
+            <h2 className="page-name">Home Page</h2>
 
             {renderContent()}
         </>

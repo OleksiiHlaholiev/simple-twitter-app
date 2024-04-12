@@ -63,7 +63,7 @@ export const LoginPage = () => {
                   noValidate={true}
                   onSubmit={handleFormSubmit}
             >
-                <h2>Login Page</h2>
+                <h2 className="page-name">Login Page</h2>
                 <TextField
                     label="Nick name"
                     onChange={e => setNickName(e.target.value)}

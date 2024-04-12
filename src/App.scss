@@ -3,4 +3,16 @@
 
 .app {
   padding-bottom: 100px;
+
+  .page-name {
+    font-size: 36px;
+    font-family: $ProximaNovaBold;
+    text-align: center;
+    margin-bottom: 30px;
+
+    @include mediaMaxWidth($mobileWidth) {
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+  }
 }

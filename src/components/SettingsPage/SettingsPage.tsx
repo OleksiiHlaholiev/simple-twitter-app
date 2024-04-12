@@ -81,7 +81,7 @@ export const SettingsPage = () => {
         <>
             {isProcess ? (<ProgressBar/>) : ''}
 
-            <h2>Settings Page</h2>
+            <h2 className="page-name">Settings Page</h2>
 
             {renderContent()}
         </>
