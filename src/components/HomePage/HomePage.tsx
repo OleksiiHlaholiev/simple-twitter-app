@@ -73,23 +73,25 @@ export const HomePage = () => {
 
         return (
             <div className="posts-wrapper">
-                <h2 className="post-title">{title}</h2>
+                <h3 className="post-title">{title}</h3>
 
-                <div className="posts-cont">
-                    <InfiniteScroll
-                        dataLength={data.length}
-                        next={loadData}
-                        hasMore={hasMore}
-                        loader={<ProgressBar/>}
-                        endMessage={
-                            <p style={{textAlign: "center"}}>
-                                <b>Yay! You have seen it all</b>
-                            </p>
-                        }
-                    >
-                        {data?.map((itemData, itemIndex) => renderPostItem(itemData, itemIndex))}
-                    </InfiniteScroll>
-                </div>
+                {isDataNotEmpty ?  (
+                    <div className="posts-cont">
+                        <InfiniteScroll
+                            dataLength={data.length}
+                            next={loadData}
+                            hasMore={hasMore}
+                            loader={<ProgressBar/>}
+                            endMessage={
+                                <p style={{textAlign: "center"}}>
+                                    <b>Yay! You have seen it all</b>
+                                </p>
+                            }
+                        >
+                            {data?.map((itemData, itemIndex) => renderPostItem(itemData, itemIndex))}
+                        </InfiniteScroll>
+                    </div>
+                ): ''}
             </div>
         );
     };
@@ -100,9 +102,11 @@ export const HomePage = () => {
 
     return (
         <>
-            <h2>Home Page</h2>
+            <h2 className="page-name">Home Page</h2>
 
             {renderContent()}
+
+            {isProcess ? (<ProgressBar/>) : ''}
         </>
     )
 }

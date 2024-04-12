@@ -40,8 +40,7 @@ export const DetailPage = () => {
         })();
     }, [postId]);
 
-    //TODO: check the data type
-    const renderSinglePost = (itemData: any) => {
+    const renderSinglePost = (itemData: IPost) => {
         const {body, id, reactions, tags, title, userId} = itemData;
         const isDataNotEmpty = itemData !== null;
         const titleStr = isDataNotEmpty ? 'Post' : 'No Post information';
@@ -79,7 +78,6 @@ export const DetailPage = () => {
     };
 
     const renderContent = () => {
-        // TODO: check the render logic
         return renderCondition ? (renderSinglePost(data)) : '';
     };
 
@@ -87,7 +85,7 @@ export const DetailPage = () => {
         <>
             {isProcess ? (<ProgressBar/>) : ''}
 
-            <h2>Detail Page</h2>
+            <h2 className="page-name">Detail Page</h2>
 
             {renderContent()}
         </>

@@ -1,3 +1,4 @@
+@import 'mixins';
 @import 'constants';
 @import 'fonts';
 
@@ -29,5 +30,10 @@ section {
     text-align: center;
     color: $blueColorLight;
     font-family: $ProximaNovaBold;
+
+    @include mediaMaxWidth($mobileWidth) {
+      margin-bottom: 20px;
+      font-size: 36px;
+    }
   }
 }

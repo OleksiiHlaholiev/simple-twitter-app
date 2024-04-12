@@ -9,10 +9,10 @@
 }
 
 .posts-wrapper {
-    margin-top: 50px;
+    margin-top: 30px;
 
-    h2 {
-        font-family: $ProximaNovaBold;
+    .post-title {
+        font-family: $ProximaNovaRegular;
     }
 
     .posts-cont {
@@ -94,6 +94,11 @@
     width: 400px;
     margin: 0 auto;
     text-align: center;
+
+    @include mediaMaxWidth($mobileWidth) {
+        width: 100%;
+        max-width: 400px;
+    }
 
     .fields-wrapper {
         margin-bottom: 30px;

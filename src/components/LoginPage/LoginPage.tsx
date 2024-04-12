@@ -17,7 +17,7 @@ export const LoginPage = () => {
         try {
             const data = await makeAuthLoginRequest(nickName);
             console.log('Login Success: ', data);
-            showNotificationSuccess('Login is successful');
+            showNotificationSuccess(`Login is successful for real user: ${data.username}!`);
             //TODO: check the redirect to Home page and logic
             localStorage.setItem('token', data.token);
             localStorage.setItem('isAuth', 'true');
@@ -63,7 +63,7 @@ export const LoginPage = () => {
                   noValidate={true}
                   onSubmit={handleFormSubmit}
             >
-                <h2>Login Page</h2>
+                <h2 className="page-name">Login Page</h2>
                 <TextField
                     label="Nick name"
                     onChange={e => setNickName(e.target.value)}
