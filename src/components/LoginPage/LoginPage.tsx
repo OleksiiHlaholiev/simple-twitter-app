@@ -17,7 +17,7 @@ export const LoginPage = () => {
         try {
             const data = await makeAuthLoginRequest(nickName);
             console.log('Login Success: ', data);
-            showNotificationSuccess('Login is successful');
+            showNotificationSuccess(`Login is successful for real user: ${data.username}!`);
             //TODO: check the redirect to Home page and logic
             localStorage.setItem('token', data.token);
             localStorage.setItem('isAuth', 'true');
