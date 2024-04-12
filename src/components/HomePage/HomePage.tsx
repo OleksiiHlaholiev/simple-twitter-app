@@ -1,43 +1,47 @@
-import React, {useEffect, useState } from "react";
-import { getPosts } from "../../services/api";
+import React, {useEffect, useState} from "react";
+import {getPosts} from "../../services/api";
 import {DESCRIPTION_SYMBOLS_QUANTITY, POSTS_LIMIT, ROUTES_PATH} from "../../constants";
 import {showNotificationError} from "../../helpers/notifications";
 import {IPost} from "../../dataTypes/dataTypes";
 import ProgressBar from "../ProgressBar";
-import { Link } from "react-router-dom";
-import { renderTags } from "../../helpers/renderFuncs";
+import {Link} from "react-router-dom";
+import {renderTags} from "../../helpers/renderFuncs";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export const HomePage = () => {
     const [page, setPage] = useState<number>(0);
     const [data, setData] = useState<IPost[]>([]);
+    const [hasMore, setHasMore] = useState<boolean>(true);
     const [isProcess, setIsProcess] = useState<boolean>(false);
 
-    const renderCondition = !isProcess;
-
     const loadData = async () => {
+        if (isProcess || !hasMore) return;
+
+        setIsProcess(true);
+
         try {
-            const data = await getPosts(page * POSTS_LIMIT);
-            console.log('Current posts: ', data.posts);
-            setData(data.posts);
+            const result = await getPosts(page * POSTS_LIMIT);
+            console.log('Current post response: ', result);
+            setData(prevData => [...prevData, ...result.posts]);
+            if (data.length >= result.total) {
+                setHasMore(false);
+            }
+            setPage(prevPage => prevPage + 1);
         } catch (error: any) {
             console.error(error);
             const errorMsg = error?.message as string;
             showNotificationError(errorMsg);
-            setData([]);
+            setData([...data]);
+        } finally {
+            setIsProcess(false);
         }
     };
 
     useEffect(() => {
         (async () => {
-            if (!isProcess) {
-                setIsProcess(true);
-
-                await loadData();
-
-                setIsProcess(false);
-            }
+            await loadData();
         })();
-    }, [page]);
+    }, []);
 
     const renderPostItem = (itemData: IPost, itemIndex: number) => {
         const {body, id, reactions, tags, title, userId} = itemData;
@@ -71,26 +75,31 @@ export const HomePage = () => {
             <div className="posts-wrapper">
                 <h2 className="post-title">{title}</h2>
 
-                {isDataNotEmpty ? (
-                    <>
-                        <div className="posts-cont">
-                            {data?.map((itemData, itemIndex) => renderPostItem(itemData, itemIndex))}
-                        </div>
-                    </>
-                ) : ''}
+                <div className="posts-cont">
+                    <InfiniteScroll
+                        dataLength={data.length}
+                        next={loadData}
+                        hasMore={hasMore}
+                        loader={<ProgressBar/>}
+                        endMessage={
+                            <p style={{textAlign: "center"}}>
+                                <b>Yay! You have seen it all</b>
+                            </p>
+                        }
+                    >
+                        {data?.map((itemData, itemIndex) => renderPostItem(itemData, itemIndex))}
+                    </InfiniteScroll>
+                </div>
             </div>
         );
     };
 
     const renderContent = () => {
-        // TODO: check the render logic
-        return renderCondition ? (renderPosts(data)) : '';
+        return renderPosts(data);
     };
 
     return (
         <>
-            {isProcess ? (<ProgressBar/>) : ''}
-
             <h2>Home Page</h2>
 
             {renderContent()}
