@@ -25,6 +25,9 @@ export const postReducer = (state = initialState, action: PostAction): PostState
         case PostActionTypes.SET_POSTS_PAGE: {
             return {...state, page: action.payload};
         }
+        case PostActionTypes.RESET_POSTS_STATE: {
+            return initialState;
+        }
         default: {
             return state;
         }

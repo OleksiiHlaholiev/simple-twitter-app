@@ -21,6 +21,7 @@ export enum PostActionTypes {
     FETCH_POSTS_SUCCESS = "FETCH_POSTS_SUCCESS",
     FETCH_POSTS_ERROR = "FETCH_POSTS_ERROR",
     SET_POSTS_PAGE = "SET_POSTS_PAGE",
+    RESET_POSTS_STATE = "RESET_POSTS_STATE",
 }
 
 export interface PostState {
@@ -33,6 +34,10 @@ export interface PostState {
 
 interface FetchPostsAction {
     type: PostActionTypes.FETCH_POSTS;
+}
+
+interface ResetPostsAction {
+    type: PostActionTypes.RESET_POSTS_STATE;
 }
 
 interface FetchPostsSuccessAction {
@@ -52,6 +57,7 @@ interface SetPostsPageAction {
 
 export type PostAction =
     FetchPostsAction |
+    ResetPostsAction |
     FetchPostsSuccessAction |
     FetchPostsErrorAction |
     SetPostsPageAction;

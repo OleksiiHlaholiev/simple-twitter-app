@@ -22,6 +22,10 @@ export const fetchPosts = (page: number = 0) => {
     }
 }
 
-export function setPostsPage(page: number): PostAction {
+export const setPostsPage = (page: number): PostAction => {
     return {type: PostActionTypes.SET_POSTS_PAGE, payload: page}
+}
+
+export const resetPostsState = (): PostAction => {
+    return {type: PostActionTypes.RESET_POSTS_STATE}
 }
