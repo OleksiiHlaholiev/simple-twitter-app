@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { TextField, Button } from "@mui/material";
-import { makeAuthLoginRequest } from "../../services/api";
+import {TextField, Button} from "@mui/material";
+import {makeAuthLoginRequest} from "../../services/api";
 import ProgressBar from "../ProgressBar";
-import {showNotificationError, showNotificationSuccess} from "../../helpers/notifications";
-import { useNavigate } from "react-router-dom";
-import { ROUTES_PATH } from "../../constants";
+import {showNotificationSuccess} from "../../helpers/notifications";
+import {useNavigate} from "react-router-dom";
+import {ROUTES_PATH} from "../../constants";
 
 
 export const LoginPage = () => {
@@ -22,10 +22,7 @@ export const LoginPage = () => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('isAuth', 'true');
             navigate(`/${ROUTES_PATH.home}`);
-        } catch (error: any) {
-            console.error(error);
-            const errorMsg = error?.message as string;
-            showNotificationError(errorMsg);
+        } catch (error) {
             //setData(null);
         }
     };
