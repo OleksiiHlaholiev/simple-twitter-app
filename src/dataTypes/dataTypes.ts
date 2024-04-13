@@ -34,10 +34,13 @@ export enum PostActionTypes {
     FETCH_POSTS = "FETCH_POSTS",
     FETCH_POSTS_SUCCESS = "FETCH_POSTS_SUCCESS",
     FETCH_POSTS_ERROR = "FETCH_POSTS_ERROR",
+    SET_POSTS_PAGE = "SET_POSTS_PAGE",
 }
 
 export interface PostState {
     posts: IPost[];
+    page: number;
+    hasMore: boolean;
     isLoading: boolean;
     error: null | string;
 }
@@ -48,7 +51,7 @@ interface FetchPostsAction {
 
 interface FetchPostsSuccessAction {
     type: PostActionTypes.FETCH_POSTS_SUCCESS;
-    payload: IPost[];
+    payload: IPostResults;
 }
 
 interface FetchPostsErrorAction {
@@ -56,6 +59,15 @@ interface FetchPostsErrorAction {
     payload: string;
 }
 
-export type PostAction = FetchPostsAction | FetchPostsSuccessAction | FetchPostsErrorAction;
+interface SetPostsPageAction {
+    type: PostActionTypes.SET_POSTS_PAGE;
+    payload: number;
+}
+
+export type PostAction =
+    FetchPostsAction |
+    FetchPostsSuccessAction |
+    FetchPostsErrorAction |
+    SetPostsPageAction;
 
 /* ------------------- Redux types end ------------------- */
