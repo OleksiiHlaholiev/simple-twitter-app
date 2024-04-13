@@ -11,6 +11,7 @@ export const DESCRIPTION_SYMBOLS_QUANTITY = 150;
 
 export const ERROR_NAMES = {
     TOKEN_EXPIRED: 'TokenExpiredError',
+    TOKEN_ERROR: 'JsonWebTokenError',
 }
 
 export const OUTPUT_MESSAGES = {

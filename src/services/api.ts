@@ -13,8 +13,13 @@ export const asyncRequest = async (url: string, options?: any) => {
             "message": "Token Expired!",
             "expiredAt": "2024-04-13T07:09:56.000Z"
         }*/
-        if (data?.name === ERROR_NAMES.TOKEN_EXPIRED) {
-            throw new Error(data?.message ?? OUTPUT_MESSAGES.ERROR_TOKEN_INVALID_OR_EXPIRED);
+        //or
+        /*{
+            "name": "JsonWebTokenError",
+            "message": "Invalid/Expired Token!"
+        }*/
+        if ([ERROR_NAMES.TOKEN_ERROR, ERROR_NAMES.TOKEN_EXPIRED].includes(data?.name)) {
+            throw new Error(data?.message ?? 'Unknown ERROR');
         }
 
         return data;
