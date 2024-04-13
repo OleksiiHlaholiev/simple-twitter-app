@@ -5,17 +5,23 @@ import {ProgressBar} from "../ProgressBar/ProgressBar";
 import {Button} from "@mui/material";
 import {ROUTES_PATH} from "../../constants";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {resetLoginUserState} from "../../store/action-creators/user";
+import {resetPostsState} from "../../store/action-creators/post";
 
 export const SettingsPage = () => {
     const [data, setData] = useState<IUser | null>(null);
     const [isProcess, setIsProcess] = useState<boolean>(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {user, isLoggedIn, isLoading} = useTypedSelector(state => state.user);
 
     const renderCondition = !isProcess && data !== null;
 
     const loadData = async () => {
         try {
-            const data = await getLoggedUserInfo();
+            const data = await getLoggedUserInfo(user.token);
             console.log('Current user: ', data);
             setData(data);
         } catch (error: any) {
@@ -37,9 +43,12 @@ export const SettingsPage = () => {
 
     const onLogoutBtnClick = () => {
         //TODO: the Logout logic
-        localStorage.removeItem('token');
-        localStorage.removeItem('isAuth');
+        /*localStorage.removeItem('token');
+        localStorage.removeItem('isAuth');*/
         //localStorage.clear();
+
+        dispatch(resetLoginUserState());
+        dispatch(resetPostsState());
         navigate(`/${ROUTES_PATH.login}`);
     };
 

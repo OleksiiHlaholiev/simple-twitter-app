@@ -65,13 +65,13 @@ export const getPostById = (id = 0): Promise<IPost> => {
     return asyncRequest(requestURL);
 };
 
-export const getLoggedUserInfo = () => {
+export const getLoggedUserInfo = (token: string) => {
     const requestURL = `${URL_API_BASE}/auth/me`;
 
     return asyncRequest(requestURL, {
         method: 'GET',
         headers: {
-            'Authorization': localStorage.getItem('token'),  /* ! YOUR_TOKEN_HERE ! */
+            'Authorization': token,  /* ! YOUR_TOKEN_HERE ! */
         },
     });
 };

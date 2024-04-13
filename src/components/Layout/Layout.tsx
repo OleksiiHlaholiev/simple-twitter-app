@@ -7,10 +7,12 @@ import {ROUTES_PATH} from "../../constants";
 
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 
 export const Layout = () => {
-    const isAuth = localStorage.getItem('isAuth'); //TODO the logic
+    // const isAuth = localStorage.getItem('isAuth'); //TODO the logic
+    const {user, isLoggedIn, isLoading} = useTypedSelector(state => state.user);
     const location = useLocation();
     const currentPath = location.pathname;
     console.log({location});
@@ -24,7 +26,7 @@ export const Layout = () => {
 
                 <Outlet/>
 
-                {isAuth && (
+                {isLoggedIn && (
                     <footer className='app-footer'>
                         <List component="nav"
                               className='footer-nav'
