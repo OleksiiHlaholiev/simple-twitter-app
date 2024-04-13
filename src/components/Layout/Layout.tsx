@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import {List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -7,10 +7,11 @@ import {ROUTES_PATH} from "../../constants";
 
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 
-export const Layout = () => {
-    const isAuth = localStorage.getItem('isAuth'); //TODO the logic
+export const Layout: FC = () => {
+    const {isLoggedIn} = useTypedSelector(state => state.user);
     const location = useLocation();
     const currentPath = location.pathname;
     console.log({location});
@@ -24,7 +25,7 @@ export const Layout = () => {
 
                 <Outlet/>
 
-                {isAuth && (
+                {isLoggedIn && (
                     <footer className='app-footer'>
                         <List component="nav"
                               className='footer-nav'

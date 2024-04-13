@@ -1,6 +1,8 @@
 import {POSTS_LIMIT, URL_API_BASE, OUTPUT_MESSAGES, ERROR_NAMES} from "../constants";
-import {IPost, IPostResults, IUserWithToken} from "../dataTypes/dataTypes";
+import {IPost, IPostResults} from "../types/post";
+import {IUserWithToken} from "../types/user";
 import {showNotificationError} from "../helpers/notifications";
+
 
 export const asyncRequest = async (url: string, options?: any) => {
     try {
@@ -24,12 +26,6 @@ export const asyncRequest = async (url: string, options?: any) => {
 
         return data;
     } catch (error: any) {
-        /*if (error.message === OUTPUT_MESSAGES.ERROR_TOKEN_INVALID_OR_EXPIRED) {
-            debugger;
-            //navigate(`/${ROUTES_PATH.login}`); //TODO: check the logic
-        } else {
-            throw error;
-        }*/
         console.error(error);
         showNotificationError(error.message);
         throw error;
@@ -41,7 +37,7 @@ export const makeAuthLoginRequest = (username: string): Promise<IUserWithToken> 
 
     return asyncRequest(requestURL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             /*username,*/
             /*request with fake existing user params on the server*/
@@ -63,13 +59,13 @@ export const getPostById = (id = 0): Promise<IPost> => {
     return asyncRequest(requestURL);
 };
 
-export const getLoggedUserInfo = () => {
+export const getLoggedUserInfo = (token: string) => {
     const requestURL = `${URL_API_BASE}/auth/me`;
 
     return asyncRequest(requestURL, {
         method: 'GET',
         headers: {
-            'Authorization': localStorage.getItem('token'),  /* ! YOUR_TOKEN_HERE ! */
+            'Authorization': token,  /* ! YOUR_TOKEN_HERE ! */
         },
     });
 };
