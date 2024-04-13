@@ -17,7 +17,9 @@ export const HomePage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        loadData();
+        if (!data.length) {
+            loadData();
+        }
     }, []);
 
     const loadData = () => {
