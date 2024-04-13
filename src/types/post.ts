@@ -1,17 +1,3 @@
-export interface IUser {
-    id: number;
-    username: string;
-    email?: string;
-    firstName?: string;
-    lastName?: string;
-    gender?: string;
-    image?: string;
-}
-
-export interface IUserWithToken extends  IUser {
-    token: string;
-}
-
 export interface IPost {
     body: string;
     id: number;
@@ -28,7 +14,7 @@ export interface IPostResults {
     posts: IPost[];
 }
 
-/* ------------------- Redux types start ------------------- */
+/* ------------------- Redux types for Post start ------------------- */
 
 export enum PostActionTypes {
     FETCH_POSTS = "FETCH_POSTS",
@@ -70,4 +56,4 @@ export type PostAction =
     FetchPostsErrorAction |
     SetPostsPageAction;
 
-/* ------------------- Redux types end ------------------- */
+/* ------------------- Redux types for Post end ------------------- */

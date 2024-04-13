@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {IPost} from "../../dataTypes/dataTypes";
+import {IPost} from "../../types/post";
 import {getPostById} from "../../services/api";
 import {ProgressBar} from "../ProgressBar/ProgressBar";
 import {Link, useParams} from "react-router-dom";

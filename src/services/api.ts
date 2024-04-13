@@ -1,6 +1,8 @@
 import {POSTS_LIMIT, URL_API_BASE, OUTPUT_MESSAGES, ERROR_NAMES} from "../constants";
-import {IPost, IPostResults, IUserWithToken} from "../dataTypes/dataTypes";
+import {IPost, IPostResults} from "../types/post";
+import {IUserWithToken} from "../types/user";
 import {showNotificationError} from "../helpers/notifications";
+
 
 export const asyncRequest = async (url: string, options?: any) => {
     try {
@@ -41,7 +43,7 @@ export const makeAuthLoginRequest = (username: string): Promise<IUserWithToken> 
 
     return asyncRequest(requestURL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             /*username,*/
             /*request with fake existing user params on the server*/

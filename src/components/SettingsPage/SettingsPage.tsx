@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {IUser} from "../../dataTypes/dataTypes";
+import {IUser} from "../../types/user";
 import {getLoggedUserInfo} from "../../services/api";
 import {ProgressBar} from "../ProgressBar/ProgressBar";
 import {Button} from "@mui/material";

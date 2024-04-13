@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {DESCRIPTION_SYMBOLS_QUANTITY, POSTS_LIMIT, ROUTES_PATH} from "../../constants";
-import {IPost} from "../../dataTypes/dataTypes";
+import {IPost} from "../../types/post";
 import ProgressBar from "../ProgressBar";
 import {Link} from "react-router-dom";
 import {renderTags} from "../../helpers/renderFuncs";
