@@ -26,12 +26,6 @@ export const asyncRequest = async (url: string, options?: any) => {
 
         return data;
     } catch (error: any) {
-        /*if (error.message === OUTPUT_MESSAGES.ERROR_TOKEN_INVALID_OR_EXPIRED) {
-            debugger;
-            //navigate(`/${ROUTES_PATH.login}`); //TODO: check the logic
-        } else {
-            throw error;
-        }*/
         console.error(error);
         showNotificationError(error.message);
         throw error;

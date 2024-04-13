@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {IUser} from "../../types/user";
 import {getLoggedUserInfo} from "../../services/api";
 import {ProgressBar} from "../ProgressBar/ProgressBar";
@@ -10,7 +10,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {resetLoginUserState} from "../../store/action-creators/user";
 import {resetPostsState} from "../../store/action-creators/post";
 
-export const SettingsPage = () => {
+export const SettingsPage: FC = () => {
     const [data, setData] = useState<IUser | null>(null);
     const [isProcess, setIsProcess] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -42,11 +42,7 @@ export const SettingsPage = () => {
     }, []);
 
     const onLogoutBtnClick = () => {
-        //TODO: the Logout logic
-        /*localStorage.removeItem('token');
-        localStorage.removeItem('isAuth');*/
-        //localStorage.clear();
-
+        //TODO: check the Logout logic
         dispatch(resetLoginUserState());
         dispatch(resetPostsState());
         navigate(`/${ROUTES_PATH.login}`);

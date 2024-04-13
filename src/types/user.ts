@@ -38,7 +38,7 @@ interface ResetLoginUserAction {
 
 interface LoginUserSuccessAction {
     type: UserActionTypes.LOGIN_USER_SUCCESS;
-    payload: IUserWithToken; //TODO: check
+    payload: IUserWithToken;
 }
 
 interface LoginUserErrorAction {

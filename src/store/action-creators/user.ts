@@ -4,7 +4,6 @@ import {asyncRequest} from "../../services/api";
 import {URL_API_BASE} from "../../constants";
 import {showNotificationSuccess} from "../../helpers/notifications";
 
-//TODO: check the logic with store
 export const makeLoginRequest = (username: string) => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {

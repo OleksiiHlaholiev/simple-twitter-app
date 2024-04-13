@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {IPost} from "../../types/post";
 import {getPostById} from "../../services/api";
 import {ProgressBar} from "../ProgressBar/ProgressBar";
@@ -6,7 +6,7 @@ import {Link, useParams} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 import {renderTags} from "../../helpers/renderFuncs";
 
-export const DetailPage = () => {
+export const DetailPage: FC = () => {
     const params = useParams();
     const postId = +(params?.id ?? 0);
     const [data, setData] = useState<IPost | null>(null);

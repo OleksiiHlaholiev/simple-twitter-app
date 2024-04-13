@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import {DESCRIPTION_SYMBOLS_QUANTITY, POSTS_LIMIT, ROUTES_PATH} from "../../constants";
+import React, {FC, useEffect} from "react";
+import {DESCRIPTION_SYMBOLS_QUANTITY, ROUTES_PATH} from "../../constants";
 import {IPost} from "../../types/post";
 import ProgressBar from "../ProgressBar";
 import {Link} from "react-router-dom";
@@ -9,7 +9,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
 import {fetchPosts, setPostsPage} from "../../store/action-creators/post";
 
-export const HomePage = () => {
+export const HomePage: FC = () => {
     //TODO: check the logic with store
     const {posts: data, isLoading, error, page, hasMore} = useTypedSelector(state => state.post);
     const postsDataFromRedux = useTypedSelector(state => state.post);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import {List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -10,9 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 
-export const Layout = () => {
-    // const isAuth = localStorage.getItem('isAuth'); //TODO the logic
-    const {user, isLoggedIn, isLoading} = useTypedSelector(state => state.user);
+export const Layout: FC = () => {
+    const {isLoggedIn} = useTypedSelector(state => state.user);
     const location = useLocation();
     const currentPath = location.pathname;
     console.log({location});

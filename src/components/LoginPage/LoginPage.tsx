@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {TextField, Button} from "@mui/material";
-import {makeAuthLoginRequest} from "../../services/api";
 import ProgressBar from "../ProgressBar";
-import {showNotificationSuccess} from "../../helpers/notifications";
 import {useNavigate} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 import {useDispatch} from "react-redux";
@@ -16,12 +14,11 @@ export const LoginPage = () => {
     const [isProcess, setIsProcess] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    const {user, isLoggedIn, isLoading} = useTypedSelector(state => state.user);
+    const {isLoggedIn, isLoading} = useTypedSelector(state => state.user);
     const userDataFromRedux = useTypedSelector(state => state.user);
     console.log('userDataFromRedux: ', userDataFromRedux);
     const dispatch = useDispatch();
 
-    //TODO: the logic !!!
     useEffect(() => {
         if (isLoggedIn) {
             navigate(`/${ROUTES_PATH.home}`);
@@ -31,20 +28,6 @@ export const LoginPage = () => {
     const launchLoginProcess = () => {
         dispatch(makeLoginRequest(nickName));
     }
-
-    /*const launchLoginProcess = async () => {
-        try {
-            const data = await makeAuthLoginRequest(nickName);
-            console.log('Login Success: ', data);
-            showNotificationSuccess(`Login is successful for real user: ${data.username}!`);
-            //TODO: check the redirect to Home page and logic
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('isAuth', 'true');
-            navigate(`/${ROUTES_PATH.home}`);
-        } catch (error) {
-            //setData(null);
-        }
-    };*/
 
     const validateName = (name: string) => {
         return name !== ''; // simple validation
