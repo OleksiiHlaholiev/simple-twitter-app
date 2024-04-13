@@ -3,7 +3,6 @@ import {Dispatch} from "redux";
 import {asyncRequest} from "../../services/api";
 import {POSTS_LIMIT, URL_API_BASE} from "../../constants";
 
-//TODO: check the logic with store
 export const fetchPosts = (page: number = 0) => {
     return async (dispatch: Dispatch<PostAction>) => {
         try {

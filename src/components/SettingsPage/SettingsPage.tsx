@@ -42,7 +42,6 @@ export const SettingsPage: FC = () => {
     }, []);
 
     const onLogoutBtnClick = () => {
-        //TODO: check the Logout logic
         dispatch(resetLoginUserState());
         dispatch(resetPostsState());
         navigate(`/${ROUTES_PATH.login}`);
