@@ -57,6 +57,13 @@ export const SettingsPage = () => {
                             <p className="field field-name">ID:</p>
                             <p className="field field-value">{data?.id}</p>
                         </div>
+
+                        <div className="field-cont img-cont">
+                            <img className="poster"
+                                 src={data?.image}
+                                 alt="user img"
+                            />
+                        </div>
                     </div>
                 ) : ''}
 
