@@ -6,7 +6,14 @@ export const ROUTES_PATH = {
 };
 
 export const URL_API_BASE = 'https://dummyjson.com';
-export const POSTS_LIMIT = 20;
+export const POSTS_LIMIT = 50;
 export const DESCRIPTION_SYMBOLS_QUANTITY = 150;
 
-export const INVALID_TOKEN_OR_EXPIRED = 'Invalid/Expired Token!';
+export const ERROR_NAMES = {
+    TOKEN_EXPIRED: 'TokenExpiredError',
+}
+
+export const OUTPUT_MESSAGES = {
+    ERROR_TOKEN_INVALID_OR_EXPIRED: 'Invalid/Expired Token!',
+    ERROR_TOKEN_EXPIRED: 'Token Expired!',
+}
