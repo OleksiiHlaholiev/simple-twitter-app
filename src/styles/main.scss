@@ -135,9 +135,14 @@
             align-items: center;
             background-color: #f0f8ff;
             height: 300px;
+            overflow: hidden;
+
+            @include mediaMaxWidth($mobileWidth) {
+                height: 200px;
+            }
 
             .poster {
-
+                height: 100%;
             }
         }
     }
