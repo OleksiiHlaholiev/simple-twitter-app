@@ -1,19 +1,38 @@
-import {INVALID_TOKEN_OR_EXPIRED, POSTS_LIMIT, URL_API_BASE} from "../constants";
+import {POSTS_LIMIT, URL_API_BASE, OUTPUT_MESSAGES, ERROR_NAMES} from "../constants";
 import {IPost, IPostResults, IUserWithToken} from "../dataTypes/dataTypes";
+import {showNotificationError} from "../helpers/notifications";
 
 export const asyncRequest = async (url: string, options?: any) => {
     try {
         const response = await fetch(url, options);
         const data = await response.json();
 
+        // processing of dummy API unhandled error, like 401
+        /*{
+            "name": "TokenExpiredError",
+            "message": "Token Expired!",
+            "expiredAt": "2024-04-13T07:09:56.000Z"
+        }*/
+        //or
+        /*{
+            "name": "JsonWebTokenError",
+            "message": "Invalid/Expired Token!"
+        }*/
+        if ([ERROR_NAMES.TOKEN_ERROR, ERROR_NAMES.TOKEN_EXPIRED].includes(data?.name)) {
+            throw new Error(data?.message ?? 'Unknown ERROR');
+        }
+
         return data;
     } catch (error: any) {
-        if (error.message === INVALID_TOKEN_OR_EXPIRED) {
+        /*if (error.message === OUTPUT_MESSAGES.ERROR_TOKEN_INVALID_OR_EXPIRED) {
             debugger;
             //navigate(`/${ROUTES_PATH.login}`); //TODO: check the logic
         } else {
             throw error;
-        }
+        }*/
+        console.error(error);
+        showNotificationError(error.message);
+        throw error;
     }
 }
 

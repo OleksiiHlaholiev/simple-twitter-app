@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {getPosts} from "../../services/api";
+import React, {useEffect} from "react";
 import {DESCRIPTION_SYMBOLS_QUANTITY, POSTS_LIMIT, ROUTES_PATH} from "../../constants";
-import {showNotificationError} from "../../helpers/notifications";
 import {IPost} from "../../dataTypes/dataTypes";
 import ProgressBar from "../ProgressBar";
 import {Link} from "react-router-dom";
@@ -9,52 +7,27 @@ import {renderTags} from "../../helpers/renderFuncs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
-import {fetchPosts} from "../../store/action-creators/post";
+import {fetchPosts, setPostsPage} from "../../store/action-creators/post";
 
 export const HomePage = () => {
-    const [page, setPage] = useState<number>(0);
-    const [data, setData] = useState<IPost[]>([]);
-    const [hasMore, setHasMore] = useState<boolean>(true);
-    const [isProcess, setIsProcess] = useState<boolean>(false);
-
-    //TODO: the logic with store
-    /*const {posts, isLoading, error} = useTypedSelector(state => state.post);
+    //TODO: check the logic with store
+    const {posts: data, isLoading, error, page, hasMore} = useTypedSelector(state => state.post);
     const postsDataFromRedux = useTypedSelector(state => state.post);
     console.log('postsDataFromRedux: ', postsDataFromRedux);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchPosts());
-    }, []);*/
+        if (!data.length) {
+            loadData();
+        }
+    }, []);
 
-    const loadData = async () => {
-        if (isProcess || !hasMore) return;
-
-        setIsProcess(true);
-
-        try {
-            const result = await getPosts(page * POSTS_LIMIT);
-            console.log('Current post response: ', result);
-            setData(prevData => [...prevData, ...result.posts]);
-            if (data.length >= result.total) {
-                setHasMore(false);
-            }
-            setPage(prevPage => prevPage + 1);
-        } catch (error: any) {
-            console.error(error);
-            const errorMsg = error?.message as string;
-            showNotificationError(errorMsg);
-            setData([...data]);
-        } finally {
-            setIsProcess(false);
+    const loadData = () => {
+        if (hasMore && !isLoading) {
+            dispatch(fetchPosts(page));
+            dispatch(setPostsPage(page + 1));
         }
     };
-
-    useEffect(() => {
-        (async () => {
-            await loadData();
-        })();
-    }, []);
 
     const renderPostItem = (itemData: IPost, itemIndex: number) => {
         const {body, id, reactions, tags, title, userId} = itemData;
@@ -88,7 +61,7 @@ export const HomePage = () => {
             <div className="posts-wrapper">
                 <h3 className="post-title">{title}</h3>
 
-                {isDataNotEmpty ?  (
+                {isDataNotEmpty ? (
                     <div className="posts-cont">
                         <InfiniteScroll
                             dataLength={data.length}
@@ -104,7 +77,7 @@ export const HomePage = () => {
                             {data?.map((itemData, itemIndex) => renderPostItem(itemData, itemIndex))}
                         </InfiniteScroll>
                     </div>
-                ): ''}
+                ) : ''}
             </div>
         );
     };
@@ -119,7 +92,7 @@ export const HomePage = () => {
 
             {renderContent()}
 
-            {isProcess ? (<ProgressBar/>) : ''}
+            {isLoading ? (<ProgressBar/>) : ''}
         </>
     )
 }

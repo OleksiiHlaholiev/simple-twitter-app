@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
+import {List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {NavLink, Outlet, useLocation} from "react-router-dom";
@@ -20,9 +20,9 @@ export const Layout = () => {
             <div className="container">
                 <h1>Simple Twitter App!</h1>
 
-                <ToastContainer />
+                <ToastContainer/>
 
-                <Outlet />
+                <Outlet/>
 
                 {isAuth && (
                     <footer className='app-footer'>

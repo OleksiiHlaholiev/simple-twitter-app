@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {IPost} from "../../dataTypes/dataTypes";
 import {getPostById} from "../../services/api";
-import {showNotificationError} from "../../helpers/notifications";
-import { ProgressBar } from "../ProgressBar/ProgressBar";
+import {ProgressBar} from "../ProgressBar/ProgressBar";
 import {Link, useParams} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 import {renderTags} from "../../helpers/renderFuncs";
@@ -20,10 +19,7 @@ export const DetailPage = () => {
             const data = await getPostById(postId);
             console.log('Current post: ', data);
             setData(data);
-        } catch (error: any) {
-            console.error(error);
-            const errorMsg = error?.message as string;
-            showNotificationError(errorMsg);
+        } catch (error) {
             setData(null);
         }
     };

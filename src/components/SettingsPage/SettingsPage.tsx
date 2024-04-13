@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {IUser} from "../../dataTypes/dataTypes";
 import {getLoggedUserInfo} from "../../services/api";
-import {showNotificationError} from "../../helpers/notifications";
-import { ProgressBar } from "../ProgressBar/ProgressBar";
+import {ProgressBar} from "../ProgressBar/ProgressBar";
 import {Button} from "@mui/material";
 import {ROUTES_PATH} from "../../constants";
 import {useNavigate} from "react-router-dom";
@@ -20,9 +19,6 @@ export const SettingsPage = () => {
             console.log('Current user: ', data);
             setData(data);
         } catch (error: any) {
-            console.error(error);
-            const errorMsg = error?.message as string;
-            showNotificationError(errorMsg);
             setData(null);
         }
     };
@@ -60,6 +56,13 @@ export const SettingsPage = () => {
                         <div className="field-cont">
                             <p className="field field-name">ID:</p>
                             <p className="field field-value">{data?.id}</p>
+                        </div>
+
+                        <div className="field-cont img-cont">
+                            <img className="poster"
+                                 src={data?.image}
+                                 alt="user img"
+                            />
                         </div>
                     </div>
                 ) : ''}
