@@ -8,7 +8,7 @@ export interface IUser {
     image?: string;
 }
 
-export interface IUserWithToken extends  IUser {
+export interface IUserWithToken extends IUser {
     token: string;
 }
 
@@ -18,6 +18,7 @@ export enum UserActionTypes {
     LOGIN_USER = "LOGIN_USER",
     LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS",
     LOGIN_USER_ERROR = "LOGIN_USER_ERROR",
+    RESET_LOGIN_USER_STATE = "RESET_LOGIN_USER_STATE",
 }
 
 export interface UserSessionState {
@@ -29,6 +30,10 @@ export interface UserSessionState {
 
 interface LoginUserAction {
     type: UserActionTypes.LOGIN_USER;
+}
+
+interface ResetLoginUserAction {
+    type: UserActionTypes.RESET_LOGIN_USER_STATE;
 }
 
 interface LoginUserSuccessAction {
@@ -43,6 +48,7 @@ interface LoginUserErrorAction {
 
 export type UserAction =
     LoginUserAction |
+    ResetLoginUserAction |
     LoginUserSuccessAction |
     LoginUserErrorAction;
 

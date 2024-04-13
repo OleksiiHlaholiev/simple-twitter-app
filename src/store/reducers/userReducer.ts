@@ -22,6 +22,9 @@ export const userReducer = (state = initialState, action: UserAction): UserSessi
         case UserActionTypes.LOGIN_USER_ERROR: {
             return {...state, isLoading: false, error: action.payload};
         }
+        case UserActionTypes.RESET_LOGIN_USER_STATE: {
+            return initialState;
+        }
         default: {
             return state;
         }

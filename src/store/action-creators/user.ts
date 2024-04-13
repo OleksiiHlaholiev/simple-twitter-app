@@ -1,7 +1,8 @@
 import {Dispatch} from "redux";
-import {UserAction, UserActionTypes} from "../../types/user";
+import {IUserWithToken, UserAction, UserActionTypes} from "../../types/user";
 import {asyncRequest} from "../../services/api";
 import {URL_API_BASE} from "../../constants";
+import {showNotificationSuccess} from "../../helpers/notifications";
 
 //TODO: check the logic with store
 export const makeLoginRequest = (username: string) => {
@@ -10,7 +11,7 @@ export const makeLoginRequest = (username: string) => {
             dispatch({type: UserActionTypes.LOGIN_USER});
             const requestURL = `${URL_API_BASE}/auth/login`;
 
-            const response = await asyncRequest(requestURL, {
+            const response: IUserWithToken = await asyncRequest(requestURL, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -21,6 +22,7 @@ export const makeLoginRequest = (username: string) => {
                 }),
             });
 
+            showNotificationSuccess(`Login is successful for real user: ${response.username}!`);
             dispatch({type: UserActionTypes.LOGIN_USER_SUCCESS, payload: response});
         } catch (error: any) {
             dispatch({
@@ -29,4 +31,8 @@ export const makeLoginRequest = (username: string) => {
             })
         }
     }
+}
+
+export const resetLoginUserState = (): UserAction => {
+    return {type: UserActionTypes.RESET_LOGIN_USER_STATE}
 }
