@@ -6,7 +6,7 @@ export const ROUTES_PATH = {
 };
 
 export const URL_API_BASE = 'https://dummyjson.com';
-export const POSTS_LIMIT = 50;
+export const POSTS_LIMIT = 20;
 export const DESCRIPTION_SYMBOLS_QUANTITY = 150;
 
 export const ERROR_NAMES = {
