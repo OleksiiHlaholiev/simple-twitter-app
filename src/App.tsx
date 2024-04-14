@@ -11,12 +11,11 @@ import {useTypedSelector} from "./hooks/useTypedSelector";
 
 const App = () => {
     const {isLoggedIn} = useTypedSelector(state => state.user);
-    console.log('Added /simple-twitter-app to the base URL: just for github.io');
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/simple-twitter-app/" element={<Layout/>}>
+                <Route path="/" element={<Layout/>}>
                     <Route path={ROUTES_PATH.login} element={<LoginPage/>}/>
 
                     {isLoggedIn ? (
