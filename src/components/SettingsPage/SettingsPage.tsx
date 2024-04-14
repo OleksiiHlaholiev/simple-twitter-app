@@ -10,6 +10,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {resetLoginUserState} from "../../store/action-creators/user";
 import {resetPostsState} from "../../store/action-creators/post";
 
+
 export const SettingsPage: FC = () => {
     const [data, setData] = useState<IUser | null>(null);
     const [isProcess, setIsProcess] = useState<boolean>(false);
@@ -22,7 +23,7 @@ export const SettingsPage: FC = () => {
     const loadData = async () => {
         try {
             const data = await getLoggedUserInfo(user.token);
-            console.log('Current user: ', data);
+
             setData(data);
         } catch (error: any) {
             setData(null);

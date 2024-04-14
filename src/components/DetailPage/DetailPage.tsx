@@ -6,6 +6,7 @@ import {Link, useParams} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 import {renderTags} from "../../helpers/renderFuncs";
 
+
 export const DetailPage: FC = () => {
     const params = useParams();
     const postId = +(params?.id ?? 0);
@@ -17,7 +18,7 @@ export const DetailPage: FC = () => {
     const loadData = async () => {
         try {
             const data = await getPostById(postId);
-            console.log('Current post: ', data);
+
             setData(data);
         } catch (error) {
             setData(null);
