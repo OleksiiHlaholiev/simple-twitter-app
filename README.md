@@ -1,4 +1,4 @@
-# Getting Started with Simple React App
+# Getting Started with Simple Twitter App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
