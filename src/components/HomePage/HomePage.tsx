@@ -9,10 +9,9 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
 import {fetchPosts, setPostsPage} from "../../store/action-creators/post";
 
+
 export const HomePage: FC = () => {
     const {posts: data, isLoading, error, page, hasMore} = useTypedSelector(state => state.post);
-    const postsDataFromRedux = useTypedSelector(state => state.post);
-    console.log('postsDataFromRedux: ', postsDataFromRedux);
     const dispatch = useDispatch();
 
     useEffect(() => {

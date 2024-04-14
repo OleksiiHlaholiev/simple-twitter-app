@@ -15,8 +15,6 @@ export const LoginPage = () => {
     const navigate = useNavigate();
 
     const {isLoggedIn, isLoading} = useTypedSelector(state => state.user);
-    const userDataFromRedux = useTypedSelector(state => state.user);
-    console.log('userDataFromRedux: ', userDataFromRedux);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -38,7 +36,7 @@ export const LoginPage = () => {
 
         if (validateName(nickName)) {
             setNickNameError(false);
-            console.log(nickName);
+
             (async () => {
                 if (!isProcess) {
                     setIsProcess(true);
