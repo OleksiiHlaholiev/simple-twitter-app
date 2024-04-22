@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {resetLoginUserState} from "../../store/action-creators/user";
 import {resetPostsState} from "../../store/action-creators/post";
-
+import {clearLocalStorage} from "../../helpers/localStorageFuncs";
 
 export const SettingsPage: FC = () => {
     const navigate = useNavigate();
@@ -15,7 +15,8 @@ export const SettingsPage: FC = () => {
 
     const renderCondition = user !== null;
 
-    const onLogoutBtnClick = () => {
+    const onLogoutBtnClick = async() => {
+        clearLocalStorage();
         dispatch(resetLoginUserState());
         dispatch(resetPostsState());
         navigate(`/${ROUTES_PATH.login}`);

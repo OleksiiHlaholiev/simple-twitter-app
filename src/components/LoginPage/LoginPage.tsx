@@ -6,6 +6,8 @@ import {ROUTES_PATH} from "../../constants";
 import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {makeLoginRequest} from "../../store/action-creators/user";
+import {IUserWithToken} from "../../types/user";
+import {setLocalStorageUser} from "../../helpers/localStorageFuncs";
 
 
 export const LoginPage = () => {
@@ -23,8 +25,13 @@ export const LoginPage = () => {
         }
     }, [isLoggedIn]);
 
+    const successCallBack = (user: IUserWithToken) => {
+        console.log('successCallBack', {user});
+        setLocalStorageUser(user);
+    };
+
     const launchLoginProcess = () => {
-        dispatch(makeLoginRequest(nickName));
+        dispatch(makeLoginRequest(nickName, successCallBack));
     }
 
     const validateName = (name: string) => {

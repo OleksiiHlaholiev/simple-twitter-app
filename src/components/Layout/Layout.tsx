@@ -14,6 +14,7 @@ export const Layout: FC = () => {
     const {isLoggedIn} = useTypedSelector(state => state.user);
     const location = useLocation();
     const currentPath = location.pathname;
+    console.log({location});
 
     return (
         <section className="app">
