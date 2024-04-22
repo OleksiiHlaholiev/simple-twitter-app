@@ -8,6 +8,9 @@ import {resetLoginUserState} from "../../store/action-creators/user";
 import {resetPostsState} from "../../store/action-creators/post";
 import {clearLocalStorage} from "../../helpers/localStorageFuncs";
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 export const SettingsPage: FC = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -38,9 +41,11 @@ export const SettingsPage: FC = () => {
                         </div>
 
                         <div className="field-cont img-cont">
-                            <img className="poster"
-                                 src={user?.image}
-                                 alt="user img"
+                            <LazyLoadImage
+                                src={user?.image}
+                                height={'100%'}
+                                effect="blur"
+                                alt="user img"
                             />
                         </div>
                     </div>
