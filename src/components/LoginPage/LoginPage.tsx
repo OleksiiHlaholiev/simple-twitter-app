@@ -26,7 +26,6 @@ export const LoginPage = () => {
     }, [isLoggedIn]);
 
     const successCallBack = (user: IUserWithToken) => {
-        console.log('successCallBack', {user});
         setLocalStorageUser(user);
     };
 
