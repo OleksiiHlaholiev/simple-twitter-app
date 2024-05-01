@@ -8,6 +8,7 @@ export const ROUTES_PATH = {
 export const URL_API_BASE = 'https://dummyjson.com';
 export const POSTS_LIMIT = 20;
 export const DESCRIPTION_SYMBOLS_QUANTITY = 150;
+export const TIME_TOKEN_EXPIRED_IN_MIN = 30;
 
 export const ERROR_NAMES = {
     TOKEN_EXPIRED: 'TokenExpiredError',

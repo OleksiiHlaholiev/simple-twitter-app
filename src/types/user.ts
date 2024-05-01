@@ -18,6 +18,9 @@ export enum UserActionTypes {
     LOGIN_USER = "LOGIN_USER",
     LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS",
     LOGIN_USER_ERROR = "LOGIN_USER_ERROR",
+    FETCH_USER = "FETCH_USER",
+    FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS",
+    FETCH_USER_ERROR = "FETCH_USER_ERROR",
     RESET_LOGIN_USER_STATE = "RESET_LOGIN_USER_STATE",
 }
 
@@ -46,10 +49,27 @@ interface LoginUserErrorAction {
     payload: string;
 }
 
+interface FetchUserAction {
+    type: UserActionTypes.FETCH_USER;
+}
+
+interface FetchUserSuccessAction {
+    type: UserActionTypes.FETCH_USER_SUCCESS;
+    payload: IUser;
+}
+
+interface FetchUserErrorAction {
+    type: UserActionTypes.FETCH_USER_ERROR;
+    payload: string;
+}
+
 export type UserAction =
     LoginUserAction |
     ResetLoginUserAction |
     LoginUserSuccessAction |
-    LoginUserErrorAction;
+    LoginUserErrorAction |
+    FetchUserAction |
+    FetchUserSuccessAction |
+    FetchUserErrorAction;
 
 /* ------------------- Redux types for User end ------------------- */

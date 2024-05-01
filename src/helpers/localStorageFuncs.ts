@@ -3,7 +3,6 @@ import {IUserWithToken} from "../types/user";
 export const setLocalStorageUser = (user: IUserWithToken) => {
     try {
         const userStringify = JSON.stringify(user);
-        console.log('setLocalStorageUser: ', { userStringify });
         localStorage.setItem('user', userStringify);
     } catch (error) {
         console.error(error);

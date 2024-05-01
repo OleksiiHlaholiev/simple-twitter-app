@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
-import {IUserWithToken, UserAction, UserActionTypes} from "../../types/user";
+import {IUser, IUserWithToken, UserAction, UserActionTypes} from "../../types/user";
 import {asyncRequest} from "../../services/api";
-import {URL_API_BASE} from "../../constants";
+import {TIME_TOKEN_EXPIRED_IN_MIN, URL_API_BASE} from "../../constants";
 import {showNotificationSuccess} from "../../helpers/notifications";
 
 export const makeLoginRequest = (username: string, successCallBack?: (user: IUserWithToken) => void) => {
@@ -18,6 +18,7 @@ export const makeLoginRequest = (username: string, successCallBack?: (user: IUse
                     /*request with fake existing user params on the server*/
                     username: 'atuny0',
                     password: '9uQFF1Lh',
+                    expiresInMins: TIME_TOKEN_EXPIRED_IN_MIN, // optional, defaults to 60
                 }),
             });
 
@@ -32,6 +33,29 @@ export const makeLoginRequest = (username: string, successCallBack?: (user: IUse
         }
     }
 }
+
+export const fetchLoggedUserInfo = (token: string) => {
+    return async (dispatch: Dispatch<UserAction>) => {
+        try {
+            dispatch({type: UserActionTypes.FETCH_USER});
+            const requestURL = `${URL_API_BASE}/auth/me`;
+
+            const response: IUser = await asyncRequest(requestURL, {
+                method: 'GET',
+                headers: {
+                    'Authorization': token,  /* ! YOUR_TOKEN_HERE ! */
+                },
+            });
+
+            dispatch({type: UserActionTypes.FETCH_USER_SUCCESS, payload: response});
+        } catch (error: any) {
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: error.message,
+            })
+        }
+    }
+};
 
 export const resetLoginUserState = (): UserAction => {
     return {type: UserActionTypes.RESET_LOGIN_USER_STATE}

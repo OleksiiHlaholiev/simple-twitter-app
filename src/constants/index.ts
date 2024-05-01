@@ -3,6 +3,7 @@ export {
     URL_API_BASE,
     POSTS_LIMIT,
     DESCRIPTION_SYMBOLS_QUANTITY,
+    TIME_TOKEN_EXPIRED_IN_MIN,
     ERROR_NAMES,
     OUTPUT_MESSAGES,
 } from './constants';
