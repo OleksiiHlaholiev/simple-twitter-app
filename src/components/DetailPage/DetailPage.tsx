@@ -13,8 +13,6 @@ export const DetailPage: FC = () => {
     const [data, setData] = useState<IPost | null>(null);
     const [isProcess, setIsProcess] = useState<boolean>(false);
 
-    const renderCondition = !isProcess && data;
-
     const loadData = async () => {
         try {
             const data = await getPostById(postId);
@@ -37,8 +35,8 @@ export const DetailPage: FC = () => {
         })();
     }, [postId]);
 
-    const renderSinglePost = (itemData: IPost) => {
-        const {body, id, reactions, tags, title, userId} = itemData;
+    const renderSinglePost = (itemData: IPost | null) => {
+        const {body, id, reactions, tags = [], title, userId} = itemData ?? {};
         const isDataNotEmpty = itemData !== null;
         const titleStr = isDataNotEmpty ? 'Post' : 'No Post information';
 
@@ -75,7 +73,7 @@ export const DetailPage: FC = () => {
     };
 
     const renderContent = () => {
-        return renderCondition ? (renderSinglePost(data)) : '';
+        return renderSinglePost(data);
     };
 
     return (

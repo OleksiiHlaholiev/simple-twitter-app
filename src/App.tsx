@@ -16,17 +16,18 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout/>}>
+                    <Route index element={<LoginPage/>}/>
                     <Route path={ROUTES_PATH.login} element={<LoginPage/>}/>
 
                     {isLoggedIn ? (
                         <>
-                            <Route index path={ROUTES_PATH.home} element={<HomePage/>}/>
+                            <Route path={ROUTES_PATH.home} element={<HomePage/>}/>
                             <Route path={`${ROUTES_PATH.detail}/:id`} element={<DetailPage/>}/>
                             <Route path={ROUTES_PATH.settings} element={<SettingsPage/>}/>
                         </>
                     ) : (
                         <>
-                            <Route index element={<Navigate to={ROUTES_PATH.login} replace/>}/>
+                            <Route element={<Navigate to={ROUTES_PATH.login} replace/>}/>
                         </>
                     )}
 

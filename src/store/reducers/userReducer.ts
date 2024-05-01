@@ -1,6 +1,20 @@
+import { getLocalStorageUser } from "../../helpers/localStorageFuncs";
 import {UserAction, UserActionTypes, UserSessionState} from "../../types/user";
 
+const localStorageUser = getLocalStorageUser();
+
 const initialState: UserSessionState = {
+    user: localStorageUser ?? {
+        id: 0,
+        username: '',
+        token: '',
+    },
+    isLoggedIn: !!localStorageUser?.token ?? false,
+    isLoading: false,
+    error: null,
+};
+
+const resetState: UserSessionState = {
     user: {
         id: 0,
         username: '',
@@ -23,7 +37,7 @@ export const userReducer = (state = initialState, action: UserAction): UserSessi
             return {...state, isLoading: false, error: action.payload};
         }
         case UserActionTypes.RESET_LOGIN_USER_STATE: {
-            return initialState;
+            return resetState;
         }
         default: {
             return state;

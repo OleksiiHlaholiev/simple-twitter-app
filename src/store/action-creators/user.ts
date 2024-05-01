@@ -4,7 +4,7 @@ import {asyncRequest} from "../../services/api";
 import {URL_API_BASE} from "../../constants";
 import {showNotificationSuccess} from "../../helpers/notifications";
 
-export const makeLoginRequest = (username: string) => {
+export const makeLoginRequest = (username: string, successCallBack?: (user: IUserWithToken) => void) => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
             dispatch({type: UserActionTypes.LOGIN_USER});
@@ -23,6 +23,7 @@ export const makeLoginRequest = (username: string) => {
 
             showNotificationSuccess(`Login is successful for real user: ${response.username}!`);
             dispatch({type: UserActionTypes.LOGIN_USER_SUCCESS, payload: response});
+            successCallBack?.(response);
         } catch (error: any) {
             dispatch({
                 type: UserActionTypes.LOGIN_USER_ERROR,
