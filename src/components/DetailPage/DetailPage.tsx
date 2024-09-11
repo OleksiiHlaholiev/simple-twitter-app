@@ -56,7 +56,7 @@ export const DetailPage: FC = () => {
                                             <h3 className="name">{title}</h3>
                                             <p>ID: {id}</p>
                                             {renderTags(tags)}
-                                            <p>{`Reactions: ${reactions}`}</p>
+                                            <p>{`Reactions:: likes: ${reactions?.likes} --- dislikes: ${reactions?.dislikes}`}</p>
                                             <p className="description">{body}</p>
                                             <p className="detail-info">
                                                 <Link to={linkPathTo} className="link go-to-main-btn">HOME</Link>

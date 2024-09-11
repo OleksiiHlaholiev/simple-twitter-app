@@ -1,7 +1,10 @@
 export interface IPost {
     body: string;
     id: number;
-    reactions: number;
+    reactions: {
+        likes: number;
+        dislikes: number;
+    };
     tags: string[];
     title: string;
     userId: number;
