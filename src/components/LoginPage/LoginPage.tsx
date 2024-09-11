@@ -8,6 +8,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {makeLoginRequest} from "../../store/action-creators/user";
 import {IUserWithToken} from "../../types/user";
 import {setLocalStorageUser} from "../../helpers/localStorageFuncs";
+import LoginIcon from '@mui/icons-material/Login';
 
 
 export const LoginPage = () => {
@@ -26,7 +27,6 @@ export const LoginPage = () => {
     }, [isLoggedIn]);
 
     const successCallBack = (user: IUserWithToken) => {
-        console.log('successCallBack', {user});
         setLocalStorageUser(user);
     };
 
@@ -81,7 +81,15 @@ export const LoginPage = () => {
                     error={nickNameError}
                 />
 
-                <Button variant="contained" color="primary" type="submit">Login</Button>
+                <Button variant="contained"
+                        color="primary"
+                        type="submit"
+                >
+                    Login
+                    <i className="icon icon-login">
+                        <LoginIcon/>
+                    </i>
+                </Button>
             </form>
         </>
     );

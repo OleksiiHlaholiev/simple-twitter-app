@@ -41,7 +41,7 @@ export const HomePage: FC = () => {
                     <Link to={linkPathTo} className="link name">{title}</Link>
                     <p>ID: {id}</p>
                     {renderTags(tags)}
-                    <p>{`Reactions: ${reactions}`}</p>
+                    <p>{`Reactions:: likes: ${reactions.likes} --- dislikes: ${reactions.dislikes}`}</p>
                     <p className="description">{tempDescrStr}</p>
                     <p className="detail-info">
                         <Link to={linkPathTo} className="link">Detail</Link>

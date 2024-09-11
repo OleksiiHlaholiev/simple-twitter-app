@@ -36,6 +36,15 @@ export const userReducer = (state = initialState, action: UserAction): UserSessi
         case UserActionTypes.LOGIN_USER_ERROR: {
             return {...state, isLoading: false, error: action.payload};
         }
+        case UserActionTypes.FETCH_USER: {
+            return {...state, isLoading: true, error: null};
+        }
+        case UserActionTypes.FETCH_USER_SUCCESS: {
+            return {...state, isLoading: false, error: null, user: {...state.user, ...action.payload}};
+        }
+        case UserActionTypes.FETCH_USER_ERROR: {
+            return {...state, isLoading: false, error: action.payload};
+        }
         case UserActionTypes.RESET_LOGIN_USER_STATE: {
             return resetState;
         }
