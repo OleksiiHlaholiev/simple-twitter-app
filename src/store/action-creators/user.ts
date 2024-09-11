@@ -16,8 +16,8 @@ export const makeLoginRequest = (username: string, successCallBack?: (user: IUse
                 body: JSON.stringify({
                     /*username,*/
                     /*request with fake existing user params on the server*/
-                    username: 'atuny0',
-                    password: '9uQFF1Lh',
+                    username: 'sophiab',
+                    password: 'sophiabpass',
                     expiresInMins: TIME_TOKEN_EXPIRED_IN_MIN, // optional, defaults to 60
                 }),
             });
