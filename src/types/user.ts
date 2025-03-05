@@ -9,7 +9,8 @@ export interface IUser {
 }
 
 export interface IUserWithToken extends IUser {
-    token: string;
+    accessToken: string;
+    refreshToken: string;
 }
 
 /* ------------------- Redux types for User start ------------------- */

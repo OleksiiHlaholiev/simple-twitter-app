@@ -29,7 +29,7 @@ export const SettingsPage: FC = () => {
     };
 
     const onUpdateUserDataBtnClick = async () => {
-        dispatch(fetchLoggedUserInfo(user.token));
+        dispatch(fetchLoggedUserInfo(user.accessToken));
     };
 
     const renderContent = () => {

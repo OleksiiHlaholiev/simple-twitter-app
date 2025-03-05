@@ -7,9 +7,10 @@ const initialState: UserSessionState = {
     user: localStorageUser ?? {
         id: 0,
         username: '',
-        token: '',
+        accessToken: '',
+        refreshToken: '',
     },
-    isLoggedIn: !!localStorageUser?.token ?? false,
+    isLoggedIn: !!localStorageUser?.accessToken ?? false,
     isLoading: false,
     error: null,
 };
@@ -18,7 +19,8 @@ const resetState: UserSessionState = {
     user: {
         id: 0,
         username: '',
-        token: '',
+        accessToken: '',
+        refreshToken: '',
     },
     isLoggedIn: false,
     isLoading: false,
