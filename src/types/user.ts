@@ -1,3 +1,5 @@
+import {IToken} from "./token";
+
 export interface IUser {
     id: number;
     username: string;
@@ -8,9 +10,8 @@ export interface IUser {
     image?: string;
 }
 
-export interface IUserWithToken extends IUser {
-    accessToken: string;
-    refreshToken: string;
+export interface IUserWithToken extends IUser, IToken {
+
 }
 
 /* ------------------- Redux types for User start ------------------- */
