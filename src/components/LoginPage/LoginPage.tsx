@@ -94,7 +94,8 @@ export const LoginPage = () => {
                     error={userPasswordError}
                 />
 
-                <Button variant="contained"
+                <Button className="log-in-out-btn"
+                        variant="contained"
                         color="primary"
                         type="submit"
                 >

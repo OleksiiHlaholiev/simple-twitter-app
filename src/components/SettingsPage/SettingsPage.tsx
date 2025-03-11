@@ -45,9 +45,9 @@ export const SettingsPage: FC = () => {
     const renderContent = () => {
         return (
             <div className="settings-page">
-
                 <div className="btn-cont">
-                    <Button variant="contained"
+                    <Button className="update-data-btn"
+                            variant="contained"
                             color="primary"
                             onClick={onUpdateUserDataBtnClick}
                     >
@@ -87,7 +87,8 @@ export const SettingsPage: FC = () => {
                 ) : ''}
 
                 <div className="btn-cont">
-                    <Button variant="contained"
+                    <Button className="log-in-out-btn"
+                            variant="contained"
                             color="primary"
                             onClick={onLogoutBtnClick}
                     >
