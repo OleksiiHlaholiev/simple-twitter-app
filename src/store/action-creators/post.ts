@@ -1,16 +1,14 @@
 import {PostAction, PostActionTypes} from "../../types/post";
 import {Dispatch} from "redux";
-import {asyncRequest} from "../../services/api";
-import {POSTS_LIMIT, URL_API_BASE} from "../../constants";
+import * as api from "../../services/api";
+import {POSTS_LIMIT} from "../../constants";
 
 export const fetchPosts = (page: number = 0) => {
     return async (dispatch: Dispatch<PostAction>) => {
         try {
             dispatch({type: PostActionTypes.FETCH_POSTS});
             const skip = page * POSTS_LIMIT;
-            const requestURL = `${URL_API_BASE}/posts?limit=${POSTS_LIMIT}&skip=${skip}`;
-            const response = await asyncRequest(requestURL);
-
+            const response = await api.getPosts(skip)
             dispatch({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: response});
         } catch (error: any) {
             dispatch({

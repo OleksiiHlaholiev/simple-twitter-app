@@ -1,27 +1,17 @@
 import {Dispatch} from "redux";
 import {IUser, IUserWithToken, UserAction, UserActionTypes} from "../../types/user";
-import {asyncRequest} from "../../services/api";
-import {TIME_TOKEN_EXPIRED_IN_MIN, URL_API_BASE} from "../../constants";
-import {showNotificationSuccess} from "../../helpers/notifications";
+import {IToken} from "../../types/token";
+import * as api from "../../services/api";
+import {OUTPUT_MESSAGES} from "../../constants";
+import {showNotificationError, showNotificationSuccess} from "../../helpers/notifications";
+import {setLocalStorageUser} from "../../helpers/localStorageFuncs";
 
-export const makeLoginRequest = (username: string, successCallBack?: (user: IUserWithToken) => void) => {
+
+export const makeLoginRequest = (username: string, password: string, successCallBack?: (user: IUserWithToken) => void) => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
             dispatch({type: UserActionTypes.LOGIN_USER});
-            const requestURL = `${URL_API_BASE}/auth/login`;
-
-            const response: IUserWithToken = await asyncRequest(requestURL, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    /*username,*/
-                    /*request with fake existing user params on the server*/
-                    username: 'sophiab',
-                    password: 'sophiabpass',
-                    expiresInMins: TIME_TOKEN_EXPIRED_IN_MIN, // optional, defaults to 60
-                }),
-            });
-
+            const response: IUserWithToken = await api.makeAuthLoginRequest(username, password);
             showNotificationSuccess(`Login is successful for real user: ${response.username}!`);
             dispatch({type: UserActionTypes.LOGIN_USER_SUCCESS, payload: response});
             successCallBack?.(response);
@@ -34,25 +24,42 @@ export const makeLoginRequest = (username: string, successCallBack?: (user: IUse
     }
 }
 
-export const fetchLoggedUserInfo = (token: string) => {
+export const fetchLoggedUserInfo = (
+    accessToken: string,
+    refreshToken: string,
+    updateTokenAndReFetchCallBack?: (token: IToken) => void
+) => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
             dispatch({type: UserActionTypes.FETCH_USER});
-            const requestURL = `${URL_API_BASE}/auth/me`;
-
-            const response: IUser = await asyncRequest(requestURL, {
-                method: 'GET',
-                headers: {
-                    'Authorization': token,  /* ! YOUR_TOKEN_HERE ! */
-                },
-            });
-
+            const response: IUser = await api.getLoggedUserInfo(accessToken);
             dispatch({type: UserActionTypes.FETCH_USER_SUCCESS, payload: response});
+            setLocalStorageUser({
+                ...response,
+                accessToken,
+                refreshToken,
+            });
         } catch (error: any) {
             dispatch({
                 type: UserActionTypes.FETCH_USER_ERROR,
                 payload: error.message,
             })
+            //TODO: check - handle status code "401 Unauthorized" error
+            // current logic - try to refreshAuthSession via refresh token
+            if (error?.status === 401 && error?.message === OUTPUT_MESSAGES.ERROR_TOKEN_EXPIRED) {
+                try {
+                    dispatch({type: UserActionTypes.REFRESH_USER_TOKEN});
+                    const refreshAuthResponse: IToken = await api.refreshAuthSession(refreshToken)
+                    dispatch({type: UserActionTypes.REFRESH_USER_TOKEN_SUCCESS, payload: refreshAuthResponse});
+                    updateTokenAndReFetchCallBack?.(refreshAuthResponse);
+                } catch (refreshAuthErr: any) {
+                    dispatch({
+                        type: UserActionTypes.REFRESH_USER_TOKEN_ERROR,
+                        payload: refreshAuthErr.message,
+                    })
+                    showNotificationError(`${refreshAuthErr.message} Please, re-login into the system.`);
+                }
+            }
         }
     }
 };

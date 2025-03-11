@@ -7,12 +7,13 @@ import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {fetchLoggedUserInfo, resetLoginUserState} from "../../store/action-creators/user";
 import {resetPostsState} from "../../store/action-creators/post";
-import {clearLocalStorage} from "../../helpers/localStorageFuncs";
+import {clearLocalStorage, setLocalStorageUser} from "../../helpers/localStorageFuncs";
 
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {IToken} from "../../types/token";
 
 export const SettingsPage: FC = () => {
     const navigate = useNavigate();
@@ -28,8 +29,17 @@ export const SettingsPage: FC = () => {
         navigate(`/${ROUTES_PATH.login}`);
     };
 
+    const updateTokenAndReFetchCallBack = (token: IToken) => {
+        setLocalStorageUser({
+            ...user,
+            ...(token ?? {}),
+        });
+
+        dispatch(fetchLoggedUserInfo(token.accessToken, token.refreshToken));
+    };
+
     const onUpdateUserDataBtnClick = async () => {
-        dispatch(fetchLoggedUserInfo(user.accessToken));
+        dispatch(fetchLoggedUserInfo(user.accessToken, user.refreshToken, updateTokenAndReFetchCallBack));
     };
 
     const renderContent = () => {
@@ -58,6 +68,11 @@ export const SettingsPage: FC = () => {
                         <div className="field-cont">
                             <p className="field field-name">ID:</p>
                             <p className="field field-value">{user?.id}</p>
+                        </div>
+
+                        <div className="field-cont">
+                            <p className="field field-name">Crypto Coin:</p>
+                            <p className="field field-value">{user?.crypto?.coin}</p>
                         </div>
 
                         <div className="field-cont img-cont">

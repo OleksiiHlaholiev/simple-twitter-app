@@ -1,3 +1,5 @@
+import {IToken} from "./token";
+
 export interface IUser {
     id: number;
     username: string;
@@ -6,11 +8,13 @@ export interface IUser {
     lastName?: string;
     gender?: string;
     image?: string;
+    crypto?: {
+        coin?: string;
+    }
 }
 
-export interface IUserWithToken extends IUser {
-    accessToken: string;
-    refreshToken: string;
+export interface IUserWithToken extends IUser, IToken {
+
 }
 
 /* ------------------- Redux types for User start ------------------- */
@@ -19,9 +23,15 @@ export enum UserActionTypes {
     LOGIN_USER = "LOGIN_USER",
     LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS",
     LOGIN_USER_ERROR = "LOGIN_USER_ERROR",
+
     FETCH_USER = "FETCH_USER",
     FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS",
     FETCH_USER_ERROR = "FETCH_USER_ERROR",
+
+    REFRESH_USER_TOKEN = "REFRESH_USER_TOKEN",
+    REFRESH_USER_TOKEN_SUCCESS = "REFRESH_USER_TOKEN_SUCCESS",
+    REFRESH_USER_TOKEN_ERROR = "FETCH_USER_ERROR",
+
     RESET_LOGIN_USER_STATE = "RESET_LOGIN_USER_STATE",
 }
 
@@ -64,6 +74,20 @@ interface FetchUserErrorAction {
     payload: string;
 }
 
+interface RefreshUserTokenAction {
+    type: UserActionTypes.REFRESH_USER_TOKEN;
+}
+
+interface RefreshUserTokenSuccessAction {
+    type: UserActionTypes.REFRESH_USER_TOKEN_SUCCESS;
+    payload: IToken;
+}
+
+interface RefreshUserTokenErrorAction {
+    type: UserActionTypes.REFRESH_USER_TOKEN_ERROR;
+    payload: string;
+}
+
 export type UserAction =
     LoginUserAction |
     ResetLoginUserAction |
@@ -71,6 +95,9 @@ export type UserAction =
     LoginUserErrorAction |
     FetchUserAction |
     FetchUserSuccessAction |
-    FetchUserErrorAction;
+    FetchUserErrorAction |
+    RefreshUserTokenAction |
+    RefreshUserTokenSuccessAction |
+    RefreshUserTokenErrorAction;
 
 /* ------------------- Redux types for User end ------------------- */
