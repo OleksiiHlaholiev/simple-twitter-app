@@ -4,7 +4,7 @@ import ProgressBar from "../ProgressBar";
 import {useNavigate} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 import {useDispatch} from "react-redux";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../hooks";
 import {makeLoginRequest} from "../../store/action-creators/user";
 import {IUserWithToken} from "../../types/user";
 import {setLocalStorageUser} from "../../helpers/localStorageFuncs";

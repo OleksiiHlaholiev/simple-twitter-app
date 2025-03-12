@@ -7,7 +7,7 @@ import {ROUTES_PATH} from "../../constants";
 
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../hooks";
 
 
 export const Layout: FC = () => {

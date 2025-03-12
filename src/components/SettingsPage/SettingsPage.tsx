@@ -4,7 +4,7 @@ import {Button} from "@mui/material";
 import {ROUTES_PATH} from "../../constants";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../hooks";
 import {fetchLoggedUserInfo, resetLoginUserState} from "../../store/action-creators/user";
 import {resetPostsState} from "../../store/action-creators/post";
 import {clearLocalStorage, setLocalStorageUser} from "../../helpers/localStorageFuncs";

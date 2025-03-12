@@ -7,7 +7,7 @@ import HomePage from "./components/HomePage";
 import DetailPage from './components/DetailPage';
 import SettingsPage from "./components/SettingsPage";
 import {ROUTES_PATH} from './constants';
-import {useTypedSelector} from "./hooks/useTypedSelector";
+import {useTypedSelector} from "./hooks";
 
 const App = () => {
     const {isLoggedIn} = useTypedSelector(state => state.user);

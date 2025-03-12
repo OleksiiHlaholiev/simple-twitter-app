@@ -5,7 +5,7 @@ import ProgressBar from "../ProgressBar";
 import {Link} from "react-router-dom";
 import {renderTags} from "../../helpers/renderFuncs";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../hooks";
 import {useDispatch} from "react-redux";
 import {fetchPosts, setPostsPage} from "../../store/action-creators/post";
 
