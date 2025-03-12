@@ -1,6 +1,5 @@
 import {Dispatch} from "redux";
-import {IUser, IUserWithToken, UserAction, UserActionTypes} from "../../types/user";
-import {IToken} from "../../types/token";
+import {IUser, IUserWithToken, UserAction, UserActionTypes, IToken} from "../../types";
 import * as api from "../../services/api";
 import {OUTPUT_MESSAGES} from "../../constants";
 import {showNotificationError, showNotificationSuccess} from "../../helpers/notifications";

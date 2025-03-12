@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from "react";
-import {IPost} from "../../types/post";
+import {IPost} from "../../types";
 import {getPostById} from "../../services/api";
 import {ProgressBar} from "../../components";
 import {Link, useParams} from "react-router-dom";

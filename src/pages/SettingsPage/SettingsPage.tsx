@@ -13,7 +13,7 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {IToken} from "../../types/token";
+import {IToken} from "../../types";
 
 export const SettingsPage: FC = () => {
     const navigate = useNavigate();

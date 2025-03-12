@@ -6,7 +6,7 @@ import {ROUTES_PATH} from "../../constants";
 import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../hooks";
 import {makeLoginRequest} from "../../store/action-creators/user";
-import {IUserWithToken} from "../../types/user";
+import {IUserWithToken} from "../../types";
 import {setLocalStorageUser} from "../../helpers/localStorageFuncs";
 import LoginIcon from '@mui/icons-material/Login';
 
