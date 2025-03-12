@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import {IPost} from "../../types/post";
 import {getPostById} from "../../services/api";
-import {ProgressBar} from "../ProgressBar/ProgressBar";
+import {ProgressBar} from "../../components";
 import {Link, useParams} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 import {renderTags} from "../../helpers/renderFuncs";

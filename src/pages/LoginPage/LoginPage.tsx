@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {TextField, Button} from "@mui/material";
-import ProgressBar from "../ProgressBar";
+import {ProgressBar} from "../../components";
 import {useNavigate} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 import {useDispatch} from "react-redux";

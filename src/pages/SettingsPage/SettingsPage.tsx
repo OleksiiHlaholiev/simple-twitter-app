@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from "react";
-import ProgressBar from "../ProgressBar";
+import {ProgressBar} from "../../components";
 import {Button} from "@mui/material";
 import {ROUTES_PATH} from "../../constants";
 import {useNavigate} from "react-router-dom";
