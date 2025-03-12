@@ -1,4 +1,4 @@
-import {PostAction, PostActionTypes} from "../../types/post";
+import {PostAction, PostActionTypes} from "../../types";
 import {Dispatch} from "redux";
 import * as api from "../../services/api";
 import {POSTS_LIMIT} from "../../constants";

@@ -1,7 +1,5 @@
 import {OUTPUT_MESSAGES, POSTS_LIMIT, TIME_TOKEN_EXPIRED_IN_MIN, URL_API_BASE} from "../constants";
-import {IPost, IPostResults} from "../types/post";
-import {IUser, IUserWithToken} from "../types/user";
-import {IToken} from "../types/token";
+import {IPost, IPostResults, IUser, IUserWithToken, IToken} from "../types";
 import {showNotificationError} from "../helpers/notifications";
 
 
@@ -38,8 +36,9 @@ export const asyncRequest = async (url: string, options?: any) => {
         return data;
     } catch (error: any) {
         console.error(error);
-        const isAuthMeCondition = error?.status === 401 && error?.message === OUTPUT_MESSAGES.ERROR_TOKEN_EXPIRED && url.includes('/auth/me');
-        if (!isAuthMeCondition) {
+        const isAuthMeCase = error?.status === 401 && error?.message === OUTPUT_MESSAGES.ERROR_TOKEN_EXPIRED && url.includes('/auth/me');
+        const isRefreshCase = error?.status === 401 && url.includes('/auth/refresh');
+        if (!isAuthMeCase && !isRefreshCase) {
             showNotificationError(error.message);
         }
         throw error;

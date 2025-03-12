@@ -1,5 +1,5 @@
 import { getLocalStorageUser } from "../../helpers/localStorageFuncs";
-import {UserAction, UserActionTypes, UserSessionState} from "../../types/user";
+import {UserAction, UserActionTypes, UserSessionState} from "../../types";
 
 const localStorageUser = getLocalStorageUser();
 

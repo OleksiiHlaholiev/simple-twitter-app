@@ -1,6 +1,5 @@
 import {Dispatch} from "redux";
-import {IUser, IUserWithToken, UserAction, UserActionTypes} from "../../types/user";
-import {IToken} from "../../types/token";
+import {IUser, IUserWithToken, UserAction, UserActionTypes, IToken} from "../../types";
 import * as api from "../../services/api";
 import {OUTPUT_MESSAGES} from "../../constants";
 import {showNotificationError, showNotificationSuccess} from "../../helpers/notifications";
@@ -27,7 +26,8 @@ export const makeLoginRequest = (username: string, password: string, successCall
 export const fetchLoggedUserInfo = (
     accessToken: string,
     refreshToken: string,
-    updateTokenAndReFetchCallBack?: (token: IToken) => void
+    updateTokenAndReFetchCallBack?: (token: IToken) => void,
+    onLogoutHandler?: () => void
 ) => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
@@ -58,6 +58,7 @@ export const fetchLoggedUserInfo = (
                         payload: refreshAuthErr.message,
                     })
                     showNotificationError(`${refreshAuthErr.message} Please, re-login into the system.`);
+                    onLogoutHandler?.()
                 }
             }
         }

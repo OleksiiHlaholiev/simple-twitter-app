@@ -1,4 +1,4 @@
-import {IUserWithToken} from "../types/user";
+import {IUserWithToken} from "../types";
 
 export const setLocalStorageUser = (user: IUserWithToken) => {
     try {

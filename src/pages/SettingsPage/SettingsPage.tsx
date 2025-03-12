@@ -1,55 +1,34 @@
-import React, {FC} from "react";
-import ProgressBar from "../ProgressBar";
+import React, {FC, useEffect} from "react";
+import {ProgressBar} from "../../components";
 import {Button} from "@mui/material";
-import {ROUTES_PATH} from "../../constants";
-import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {fetchLoggedUserInfo, resetLoginUserState} from "../../store/action-creators/user";
-import {resetPostsState} from "../../store/action-creators/post";
-import {clearLocalStorage, setLocalStorageUser} from "../../helpers/localStorageFuncs";
-
+import {useTypedSelector, useUser} from "../../hooks";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {IToken} from "../../types/token";
+
 
 export const SettingsPage: FC = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
     const {user, isLoading} = useTypedSelector(state => state.user);
+    const {onUpdateUserDataHandler, onLogoutHandler} = useUser();
 
     const renderCondition = user !== null;
 
-    const onLogoutBtnClick = async () => {
-        clearLocalStorage();
-        dispatch(resetLoginUserState());
-        dispatch(resetPostsState());
-        navigate(`/${ROUTES_PATH.login}`);
-    };
-
-    const updateTokenAndReFetchCallBack = (token: IToken) => {
-        setLocalStorageUser({
-            ...user,
-            ...(token ?? {}),
-        });
-
-        dispatch(fetchLoggedUserInfo(token.accessToken, token.refreshToken));
-    };
-
-    const onUpdateUserDataBtnClick = async () => {
-        dispatch(fetchLoggedUserInfo(user.accessToken, user.refreshToken, updateTokenAndReFetchCallBack));
-    };
+    useEffect(() => {
+        // load data if extra user info is absent
+        if (!isLoading && !user?.crypto?.coin) {
+            onUpdateUserDataHandler();
+        }
+    }, [])
 
     const renderContent = () => {
         return (
             <div className="settings-page">
-
                 <div className="btn-cont">
-                    <Button variant="contained"
+                    <Button className="update-data-btn"
+                            variant="contained"
                             color="primary"
-                            onClick={onUpdateUserDataBtnClick}
+                            onClick={() => onUpdateUserDataHandler()}
                     >
                         Update user data from server
                         <i className="icon icon-refresh">
@@ -87,9 +66,10 @@ export const SettingsPage: FC = () => {
                 ) : ''}
 
                 <div className="btn-cont">
-                    <Button variant="contained"
+                    <Button className="log-in-out-btn"
+                            variant="contained"
                             color="primary"
-                            onClick={onLogoutBtnClick}
+                            onClick={() => onLogoutHandler()}
                     >
                         Logout
                         <i className="icon icon-logout">

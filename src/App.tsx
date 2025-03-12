@@ -1,15 +1,12 @@
 import React from 'react';
 import './App.scss';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
-import Layout from './components/Layout';
-import LoginPage from './components/LoginPage';
-import HomePage from "./components/HomePage";
-import DetailPage from './components/DetailPage';
-import SettingsPage from "./components/SettingsPage";
+import {Layout} from './layouts';
+import {DetailPage, HomePage, LoginPage, SettingsPage} from "./pages";
 import {ROUTES_PATH} from './constants';
-import {useTypedSelector} from "./hooks/useTypedSelector";
+import {useTypedSelector} from "./hooks";
 
-const App = () => {
+export const App = () => {
     const {isLoggedIn} = useTypedSelector(state => state.user);
 
     return (
@@ -37,5 +34,3 @@ const App = () => {
         </BrowserRouter>
     );
 };
-
-export default App;
