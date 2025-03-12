@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/simple-twitter-app/static/css/main.4ed0c72b.css",
-    "main.js": "/simple-twitter-app/static/js/main.80dfd830.js",
+    "main.css": "/simple-twitter-app/static/css/main.31746a85.css",
+    "main.js": "/simple-twitter-app/static/js/main.3530eef1.js",
     "static/media/ProximaNova-Regular.svg": "/simple-twitter-app/static/media/ProximaNova-Regular.ec60c3a345eedfe7c0e6.svg",
     "static/media/ProximaNova-Bold.svg": "/simple-twitter-app/static/media/ProximaNova-Bold.e9074ee0c75d39192157.svg",
     "static/media/ProximaNova-Regular.eot": "/simple-twitter-app/static/media/ProximaNova-Regular.2bae480c2894f799c3a1.eot",
@@ -14,11 +14,11 @@
     "static/media/ProximaNova-Bold.woff": "/simple-twitter-app/static/media/ProximaNova-Bold.821fd06160811384ac29.woff",
     "static/media/logo.svg": "/simple-twitter-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/simple-twitter-app/index.html",
-    "main.4ed0c72b.css.map": "/simple-twitter-app/static/css/main.4ed0c72b.css.map",
-    "main.80dfd830.js.map": "/simple-twitter-app/static/js/main.80dfd830.js.map"
+    "main.31746a85.css.map": "/simple-twitter-app/static/css/main.31746a85.css.map",
+    "main.3530eef1.js.map": "/simple-twitter-app/static/js/main.3530eef1.js.map"
   },
   "entrypoints": [
-    "static/css/main.4ed0c72b.css",
-    "static/js/main.80dfd830.js"
+    "static/css/main.31746a85.css",
+    "static/js/main.3530eef1.js"
   ]
 }
