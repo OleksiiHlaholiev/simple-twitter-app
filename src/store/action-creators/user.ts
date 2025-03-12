@@ -27,7 +27,8 @@ export const makeLoginRequest = (username: string, password: string, successCall
 export const fetchLoggedUserInfo = (
     accessToken: string,
     refreshToken: string,
-    updateTokenAndReFetchCallBack?: (token: IToken) => void
+    updateTokenAndReFetchCallBack?: (token: IToken) => void,
+    onLogoutHandler?: () => void
 ) => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
@@ -58,6 +59,7 @@ export const fetchLoggedUserInfo = (
                         payload: refreshAuthErr.message,
                     })
                     showNotificationError(`${refreshAuthErr.message} Please, re-login into the system.`);
+                    onLogoutHandler?.()
                 }
             }
         }
