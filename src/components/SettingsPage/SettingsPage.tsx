@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import ProgressBar from "../ProgressBar";
 import {Button} from "@mui/material";
 import {ROUTES_PATH} from "../../constants";
@@ -22,7 +22,14 @@ export const SettingsPage: FC = () => {
 
     const renderCondition = user !== null;
 
-    const onLogoutBtnClick = async () => {
+    useEffect(() => {
+        // load data if extra user info is absent
+        if (!user?.crypto?.coin) {
+            onUpdateUserDataHandler();
+        }
+    }, [])
+
+    const onLogoutHandler = () => {
         clearLocalStorage();
         dispatch(resetLoginUserState());
         dispatch(resetPostsState());
@@ -38,8 +45,13 @@ export const SettingsPage: FC = () => {
         dispatch(fetchLoggedUserInfo(token.accessToken, token.refreshToken));
     };
 
-    const onUpdateUserDataBtnClick = async () => {
-        dispatch(fetchLoggedUserInfo(user.accessToken, user.refreshToken, updateTokenAndReFetchCallBack));
+    const onUpdateUserDataHandler = () => {
+        dispatch(fetchLoggedUserInfo(
+            user.accessToken,
+            user.refreshToken,
+            updateTokenAndReFetchCallBack,
+            onLogoutHandler
+        ));
     };
 
     const renderContent = () => {
@@ -49,7 +61,7 @@ export const SettingsPage: FC = () => {
                     <Button className="update-data-btn"
                             variant="contained"
                             color="primary"
-                            onClick={onUpdateUserDataBtnClick}
+                            onClick={() => onUpdateUserDataHandler()}
                     >
                         Update user data from server
                         <i className="icon icon-refresh">
@@ -90,7 +102,7 @@ export const SettingsPage: FC = () => {
                     <Button className="log-in-out-btn"
                             variant="contained"
                             color="primary"
-                            onClick={onLogoutBtnClick}
+                            onClick={() => onLogoutHandler()}
                     >
                         Logout
                         <i className="icon icon-logout">
