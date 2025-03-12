@@ -8,6 +8,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {useTypedSelector} from "../../hooks";
 import {useDispatch} from "react-redux";
 import {fetchPosts, setPostsPage} from "../../store/action-creators/post";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 
 
 export const HomePage: FC = () => {
@@ -41,7 +43,16 @@ export const HomePage: FC = () => {
                     <Link to={linkPathTo} className="link name">{title}</Link>
                     <p>ID: {id}</p>
                     {renderTags(tags)}
-                    <p>{`Reactions:: likes: ${reactions.likes} --- dislikes: ${reactions.dislikes}`}</p>
+                    <p>
+                        Reactions::
+                        <i className="icon icon-like">
+                            <ThumbUpIcon color="secondary" sx={{fontSize: 24}}/>
+                        </i> {reactions.likes}
+                        &nbsp;---&nbsp;
+                        <i className="icon icon-dislike">
+                            <ThumbDownIcon color="secondary" sx={{fontSize: 24}}/>
+                        </i> {reactions.dislikes}
+                    </p>
                     <p className="description">{tempDescrStr}</p>
                     <p className="detail-info">
                         <Link to={linkPathTo} className="link">Detail</Link>

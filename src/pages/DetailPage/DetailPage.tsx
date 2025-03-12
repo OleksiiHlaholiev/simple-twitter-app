@@ -5,6 +5,8 @@ import {ProgressBar} from "../../components";
 import {Link, useParams} from "react-router-dom";
 import {ROUTES_PATH} from "../../constants";
 import {renderTags} from "../../helpers/renderFuncs";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
 
 export const DetailPage: FC = () => {
@@ -57,6 +59,16 @@ export const DetailPage: FC = () => {
                                             <p>ID: {id}</p>
                                             {renderTags(tags)}
                                             <p>{`Reactions:: likes: ${reactions?.likes} --- dislikes: ${reactions?.dislikes}`}</p>
+                                            <p>
+                                                Reactions::
+                                                <i className="icon icon-like">
+                                                    <ThumbUpIcon sx={{color: 'yellow'}}/>
+                                                </i> {reactions?.likes}
+                                                &nbsp;---&nbsp;
+                                                <i className="icon icon-dislike">
+                                                    <ThumbDownIcon sx={{color: 'yellow'}}/>
+                                                </i> {reactions?.dislikes}
+                                            </p>
                                             <p className="description">{body}</p>
                                             <p className="detail-info">
                                                 <Link to={linkPathTo} className="link go-to-main-btn">HOME</Link>
